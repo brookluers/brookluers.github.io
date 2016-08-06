@@ -1,11 +1,23 @@
-# Site settings
-title: Brook Luers
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  A description
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://www.brookluers.com" # the base hostname & protocol for your site
-github_username:  brookluser
+# Dependencies
+markdown:         redcarpet
+pygments:         true
 
-# Build settings
-markdown: kramdown
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Brook Luers
+tagline:          'Statistician, data scientist
+description:      ''
+url:              http://www.brookluers.com
+
+author:
+  name:           'Brook Luers'
+
+paginate:         5
+
+# Custom vars
+version:          2.0.0
+
+#github:
+#  repo:           https://github.com/poole/lanyon
