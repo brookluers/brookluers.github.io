@@ -11,6 +11,7 @@ tagline:          'Statistician, data scientist'
 description:      'I am a Ph.D. student at the University of Michigan'
 url:              http://www.brookluers.com
 
+
 author:
   name:           'Brook Luers'
 
@@ -19,5 +20,3 @@ paginate:         5
 # Custom vars
 version:          2.0.0
 
-#github:
-#  repo:           https://github.com/poole/lanyon

@@ -3,4 +3,4 @@ layout: page
 title: CV
 ---
 
-Coming soon
+<a href="{{ BASE_PATH }}/cv/junk.pdf">Download here</a> (PDF)
