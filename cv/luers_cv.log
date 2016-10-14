@@ -1,9 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 AUG 2016 10:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 OCT 2016 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\nonstopmode\input luers_cv.tex
-(./luers_cv.tex (./res.cls
+**luers_cv.tex
+(./luers_cv.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(./res.cls
 Document Style `res' <26 Sep 89>.
 Document Class: res 2000/05/19 v1.4b Resume class
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -128,16 +131,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 46.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 46.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 97.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 95.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 186--193
+Underfull \hbox (badness 10000) in paragraph at lines 193--200
 
  []
 
@@ -145,17 +148,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 186--193
 Here is how much of TeX's memory you used:
  961 strings out of 493089
  12613 string characters out of 6134842
- 74743 words of memory out of 5000000
+ 75743 words of memory out of 5000000
  4503 multiletter control sequences out of 15000+600000
  4860 words of font info for 18 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,10n,43p,195b,204s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,10n,43p,170b,204s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
 pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p
 fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on luers_cv.pdf (2 pages, 68175 bytes).
+Output written on luers_cv.pdf (2 pages, 68521 bytes).
 PDF statistics:
  31 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream
