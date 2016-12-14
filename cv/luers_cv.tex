@@ -13,11 +13,12 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{}
+\fancyhf{}{}
 \makeatletter
 \fancyhead[L]{\textbf{\expandafter\@gobble\@name}}
 \makeatother
 \fancyhead[R]{\thepage}
+\fancyfoot[L]{{\small Updated \today}}
 \fancyheadoffset[L]{\sectionwidth}
 % Margins
 \topmargin=-0.25in
@@ -34,6 +35,7 @@
 \begin{document} 
 
 \name{\Large Brook Luers}
+
 \address{\parbox{0.4\linewidth}{%
     \hfill Department of Statistics\\ %
     \null\hfill 311 West Hall\\ %
@@ -41,15 +43,14 @@
     \null\hfill Ann Arbor, MI 48109\\ %
   \null \hfill luers@umich.edu}
     }
-%\address{Department of Statistics\\311 West Hall\\1085 South University\\Ann Arbor, MI 48109}
-%\address{luers@umich.edu}
+
 \begin{resume}
 
 \section{EDUCATION}          
 
 University of Michigan, Ann Arbor, MI\\
 Ph.D. in Statistics (in progress)\\
-Passed qualifying exams, spring 2016\\
+Passed qualifying exams, May 2016\\
 Expected graduation: 2020
 
 University of Wisconsin-Madison, Madison, WI  \\        
@@ -93,15 +94,16 @@ Junior Fellow, summer 2011
 University of Michigan, Ann Arbor, MI
 \begin{itemize}
 \item Ongoing Ph.D. research supervised by Professor Susan Murphy.
-\item Cleaned and formatted data from HeartSteps, a micro-randomized trial of smartphone interventions designed to increase users' physical activity.
-\item Analyzed HeartSteps data using novel methodology for estimating time-varying causal effects.
+%\item Cleaned and formatted data from HeartSteps, a micro-randomized trial of smartphone interventions designed to increase users' physical activity.
+\item Analyzed data from a micro-randomized trial of HeartSteps, a mobile physical activity intervention, using novel methodology for estimating time-varying causal effects.
+\item Developed a time-varying standardized effect size for the micro-randomized trial design. 
 \end{itemize}
 {\bf Project Assistant} \hfill Jan.--July 2015\\
 The University of Wisconsin-Madison, Madison, WI
 \begin{itemize}
 %\item Built database of exams, assignments, and other content for
 %  graduate-level introductory statistics courses (STAT 571--572).
-\item Developed realistic data sets and example research problems for new Master's-level
+\item Created realistic data sets and example research problems for new Master's-level
   statistical methods and data analysis courses.
 \end{itemize}
 {\bf Business Intelligence Developer} \hfill July 2012--June
@@ -147,7 +149,7 @@ University of Wisconsin-Madison, Madison, WI
   Biostatistics in an introductory biostatistics course and an
   applied data analysis course.
 \item Introduced students to the R
-  statistical computing package through
+  statistical computing environment through
   lectures and exercises.
 \item Graded weekly assignments and group
   projects.
