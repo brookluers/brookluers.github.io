@@ -4,6 +4,7 @@ highlighter:      rouge
 
 # Permalinks
 permalink:        pretty
+relative_permalinks: false
 
 # Setup
 title:            Brook Luers
@@ -20,6 +21,3 @@ paginate:         5
 
 # Custom vars
 version:          2.0.0
-
-
-
