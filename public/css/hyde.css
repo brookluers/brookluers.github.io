@@ -32,7 +32,7 @@
  */
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
 }
 @media (min-width: 48em) {
   html {
@@ -41,7 +41,7 @@ html {
 }
 @media (min-width: 58em) {
   html {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -79,8 +79,8 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
-  font-size: 3.25rem;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 2.5rem;
 }
 
 .topnav {
@@ -93,7 +93,7 @@ html {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .topnav a:hover {
@@ -113,7 +113,7 @@ a.sidebar-nav-item:focus {
   text-decoration: underline;
 }
 .sidebar-nav-item.active {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* Sticky sidebar

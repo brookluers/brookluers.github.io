@@ -13,6 +13,7 @@ coursename: Statistics 306, Fall 2017
 - [Importing data](#importing-data)
 - [Examining a data frame](#examining-a-data-frame)
 - [Lab exercise](#lab-exercise)
+- [Lab 1 solution](#lab-1-solution)
 
 ## Introductory Poll
 If you haven't already, please take <a href="https://umich.instructure.com/courses/181629/quizzes/52791" target="_blank">this Canvas survey</a>
@@ -195,7 +196,10 @@ Hints:
 - Add `scale_color_hue` to your plot, specifying the `breaks`, `name`, and `labels` arguments.
 - You will need to map the `group` aesthetic to the appropriate variable.
 
-### ggplot extras
+## Lab 1 solution
+[Solution to lab exercise](lab1sol)
+
+## ggplot extras
 
 - Edit the x-axis label: `+ xlab("my label")`
 - Add a title: `+ ggtitle("A title")`

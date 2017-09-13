@@ -54,7 +54,7 @@ html {
 }
 @media (min-width: 38em) {
   html {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -82,21 +82,21 @@ a:focus {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1.25;
   color: #313131;
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 h3 {
   margin-top: 1.5rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 h4, h5, h6 {
   margin-top: 1rem;
@@ -121,7 +121,7 @@ ul, ol, dl {
 }
 
 dt {
-  font-weight: bold;
+  font-weight: 500;
 }
 dd {
   margin-bottom: .5rem;
@@ -138,7 +138,7 @@ hr {
 
 abbr {
   font-size: 85%;
-  font-weight: bold;
+  font-weight: 500;
   color: #555;
   text-transform: uppercase;
 }
@@ -389,7 +389,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
   color: #ccc;
   text-align: center;
 }
