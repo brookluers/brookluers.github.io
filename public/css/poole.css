@@ -110,6 +110,10 @@ p {
   margin-bottom: 1rem;
 }
 
+.smalltext {
+  font-size: 0.75rem;
+}
+
 strong {
   color: #303030;
 }

@@ -80,7 +80,7 @@ html {
   color: #fff;
   margin-top: 0;
   font-family: Verdana, Helvetica, Arial, sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.0rem;
 }
 
 .topnav {
@@ -106,7 +106,7 @@ html {
 }
 .sidebar-nav-item {
   display: block;
-  line-height: 1.75;
+  line-height: 1.5;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
@@ -146,13 +146,28 @@ a.sidebar-nav-item:focus {
 @media (min-width: 48em) {
   .content {
     max-width: 1080px;
-    margin-left: 2rem;
+    margin-left: 20rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
+    margin-left: 20rem;
+    margin-right: 4rem;
+  }
+}
+
+@media (min-width: 48em) {
+  .nosidecontent {
+    max-width: 1080px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .nosidecontent {
     margin-left: 2rem;
     margin-right: 4rem;
   }
@@ -162,14 +177,14 @@ a.sidebar-nav-item:focus {
 @media (min-width: 48em) {
   .scontent {
     max-width: 1080px;
-    margin-left: 2rem;
+    margin-left: 20rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .scontent {
-    margin-left: 4rem;
+    margin-left: 20rem;
     margin-right: 4rem;
   }
 }
@@ -287,4 +302,5 @@ a.sidebar-nav-item:focus {
 
 .img-circle {
 	    border-radius: 50%;
+	    display: inline;
 }
