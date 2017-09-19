@@ -21,7 +21,7 @@ Office hours (in the <a href="https://lsa.umich.edu/slc/contact-us.html" target=
 ## Schedule
 
 | September 12  | [Lab 1](lab1) |
-| September 19  | Lab 2 |
+| September 19  | [Lab 2](lab2) |
 | September 26  | Lab 3  |
 
 

@@ -82,8 +82,9 @@ a:focus {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
+  margin-top: 0.5rem;
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.75;
   color: #313131;
   text-rendering: optimizeLegibility;
 }
@@ -91,15 +92,15 @@ h1 {
   font-size: 1.5rem;
 }
 h2 {
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   font-size: 1.25rem;
 }
 h3 {
-  margin-top: 1.5rem;
+  /*margin-top: 1.5rem;*/
   font-size: 1.125rem;
 }
 h4, h5, h6 {
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   font-size: 1rem;
 }
 
@@ -230,7 +231,8 @@ blockquote p:last-child {
 img {
   display: block;
   max-width: 100%;
-  margin: 0 0 1rem;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 5px;
 }
 
@@ -285,14 +287,14 @@ tbody tr:nth-child(odd) th {
  * Center the page content.
  */
 
-.container {
-  max-width: 38rem;
-  padding-left:  1rem;
-  padding-right: 1rem;
-  margin-left:  auto;
-  margin-right: auto;
-}
 
+.container {
+ max-width: 1080px;
+ padding-left:  1rem;
+ padding-right: 1rem;
+ margin-left:  auto;
+ margin-right: auto;
+ } 
 
 /*
  * Masthead
