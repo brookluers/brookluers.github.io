@@ -16,7 +16,7 @@ Brook Luers
 luers@umich.edu  
 Office hours (in the <a href="https://lsa.umich.edu/slc/contact-us.html" target="_blank">SLC</a>):  
 * Tuesday 2:45--4:15
-* Thursday 1:30--3:00
+* Thursday 3:00--4:30
 
 ## Schedule
 
