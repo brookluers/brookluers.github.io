@@ -243,7 +243,10 @@ img {
 /* Tables */
 table {
   margin-bottom: 1rem;
-  width: 100%;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 0.8rem;
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
