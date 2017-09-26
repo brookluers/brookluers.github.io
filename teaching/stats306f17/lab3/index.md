@@ -117,13 +117,20 @@ We will use data on cyclist-involved crashes in Michigan (from [MTCF](https://ww
 
     What were the three counties with the highest number of cyclist-involved crashes in 2015? Are you surprised?
 
-5. Filter `cr` to only contain crashes in Washtenaw and Wayne counties. Then compute the number of crashes in each of those two counties for each month-year combination. Plot the results as follows:
+5. Use `mutate` to add a column called `month_num` to `cr` that contains the numeric month. Apply the function `strftime` to the `date` variable. You will need to convert the results of `strftime` to a number using `as.numeric`. 
+    ``` r
+    # fill in the arguments to strftime
+    cr <- mutate(cr, month_num = as.numeric(strftime(...))) 
+    ```
+
+6. Filter `cr` to only contain crashes in Washtenaw and Wayne counties. Then compute the number of crashes in each of those two counties for each month-year combination. Plot the results as follows:
     
     <img src="wash-wayne-1.png" align="center">
     
     Hints:
       - Use the `%in%` operator when filtering the data frame.
       - Use `group_by` followed by `summarize`
+      - Map the `month_num` variable to the x-axis.
       - To control the x-axis labels you can use ths code:
       
          ``` r  
