@@ -8,6 +8,41 @@ parenturl: /teaching/stats306f17/lab3
 ---
 
 # Lab 3 Solutions
+-   [Assignment Part 1](#assignment-part-1)
+-   [Assignment Part 2](#assignment-part-2)
+
+## Assignment Part 1
+
+``` r
+ggplot(umenr) + 
+  geom_bar(aes(x=year, y=count, fill=reth),
+           stat='identity',
+            position='stack') +
+  scale_fill_brewer(palette='Set2',name='') +
+  xlab("Year")+ylab("Num. freshmen") +
+  scale_x_continuous(breaks=c(1995,2005,2015)) +
+  ggtitle("University of Michigan\n(a)")
+
+ggplot(umenr) + 
+  geom_bar(aes(x=year, y=count, fill=reth), stat='identity',
+           position='fill') +
+  scale_fill_brewer(palette='Set2', name='') +
+  xlab("Year") + ylab("Proportion of freshmen") +
+  scale_x_continuous(breaks=c(1995, 2005, 2015)) +
+  ggtitle("\n(b)")
+
+ggplot(umenr) +
+  geom_line(aes(x=year, y=pct, color=reth)) +
+  scale_color_brewer(palette='Set2', name='')+
+  xlab("Year")+ylab("Proportion of freshmen")+
+  scale_x_continuous(breaks=c(1995, 2005, 2015))+
+  ggtitle("\n(c)")
+
+```
+
+<img src="../lab3barplots.png" align="center">
+
+## Assignment Part 2 
 
 Here is the simplest solution with minimal changes to the appearance. (To make things easier to read I will only display a few schools.)
 
