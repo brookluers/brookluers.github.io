@@ -231,21 +231,21 @@ timelevels <- c("2:00 PM - 3:00 PM" = 14,
   "Unknown" = NA
 )
 cr <- mutate(cr, 
-             hournum = timelevels[paste(Time.of.Day)])
+             hour_num = timelevels[paste(Time.of.Day)])
 ```
 
 Familiarize yourself with the variables in this data set.
 
 1.  Use `select` to make `cr` contain the following variables with the following names:
 
-    |         id|date       | year|month     |day      |tod                 |County    |city                             |worst.injury                 |
-    |----------:|:----------|----:|:---------|:--------|:-------------------|:---------|:--------------------------------|:----------------------------|
-    | 2004374322|2004-09-23 | 2004|September |Thursday |7:00 PM - 8:00 PM   |Macomb    |Macomb County: Roseville         |Fatal                        |
-    | 2004374216|2004-11-07 | 2004|November  |Sunday   |10:00 AM - 11:00 AM |Monroe    |Monroe County: Lasalle Twp.      |Fatal                        |
-    | 2004373946|2004-10-19 | 2004|October   |Tuesday  |3:00 PM - 4:00 PM   |Berrien   |Berrien County: Lincoln Twp.     |B - nonincapacitating injury |
-    | 2004373597|2004-11-22 | 2004|November  |Monday   |8:00 PM - 9:00 PM   |Oakland   |Oakland County: Hazel Park       |A - incapacitating injury    |
-    | 2004371832|2004-12-16 | 2004|December  |Thursday |4:00 PM - 5:00 PM   |Hillsdale |Hillsdale County: Hillsdale Twp. |B - nonincapacitating injury |
-    | 2004371712|2004-12-28 | 2004|December  |Tuesday  |4:00 AM - 5:00 AM   |Kent      |Kent County: Wyoming             |A - incapacitating injury    |
+    |         id|date       | year|month     |hour_num    |day      |tod                 |County    |city                             |worst.injury                 |
+    |----------:|:----------|----:|:---------|:----|:--------|:-------------------|:---------|:--------------------------------|:----------------------------|
+    | 2004374322|2004-09-23 | 2004|September|19 |Thursday |7:00 PM - 8:00 PM   |Macomb    |Macomb County: Roseville         |Fatal                        |
+    | 2004374216|2004-11-07 | 2004|November|10 |Sunday   |10:00 AM - 11:00 AM |Monroe    |Monroe County: Lasalle Twp.      |Fatal                        |
+    | 2004373946|2004-10-19 | 2004|October| 15   |Tuesday  |3:00 PM - 4:00 PM   |Berrien   |Berrien County: Lincoln Twp.     |B - nonincapacitating injury |
+    | 2004373597|2004-11-22 | 2004|November| 20   |Monday   |8:00 PM - 9:00 PM   |Oakland   |Oakland County: Hazel Park       |A - incapacitating injury    |
+    | 2004371832|2004-12-16 | 2004|December| 16   |Thursday |4:00 PM - 5:00 PM   |Hillsdale |Hillsdale County: Hillsdale Twp. |B - nonincapacitating injury |
+    | 2004371712|2004-12-28 | 2004|December| 4   |Tuesday  |4:00 AM - 5:00 AM   |Kent      |Kent County: Wyoming             |A - incapacitating injury    |
         
     Note: Give the name `id` to the variable `Crash.Instance`.
 
@@ -298,3 +298,5 @@ Familiarize yourself with the variables in this data set.
          + scale_x_continuous(breaks=1:12, labels=month.name) +
          theme(axis.text.x=element_text(hjust=1, angle=45))
 	 ```
+
+7. For each month, what proportion of crashes occurred during each hour of the day? Use `group_by`, `mutate` and `summarize` (possibly more than once) applied to the `month_num` and `hour_num` columns. Plot the proportion of crashes versus the hour of the day with a line for each month.
