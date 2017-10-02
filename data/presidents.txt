@@ -1,0 +1,46 @@
+lastname,firstname,middlename,order,town,birth_state,home_state,party,birth_month,birth_day,birth_year,death_month,death_day,death_year,inaug_month,inaug_day,inaug_year,left_month,left_day,left_year,assassination_attempt,assassinated
+Washington,George,,1,Westmoreland County,Virginia,Virginia,Independent,2,22,1732,12,14,1799,4,30,1789,3,4,1797,FALSE,FALSE
+Adams,John,,2,Quincy,Massachusetts,Massachusetts,Federalist,10,30,1735,7,4,1826,3,4,1797,3,4,1801,FALSE,FALSE
+Jefferson,Thomas,,3,Albemarle County,Virginia,Virginia,Democratic-Republican,4,13,1743,7,4,1826,3,4,1801,3,4,1809,FALSE,FALSE
+Madison,James,,4,Port Conway,Virginia,Virginia,Democratic-Republican,3,16,1751,6,28,1836,3,4,1809,3,4,1817,FALSE,FALSE
+Monroe,James,,5,Westmoreland County,Virginia,Virginia,Democratic-Republican,4,28,1758,7,4,1831,3,4,1817,3,4,1825,FALSE,FALSE
+Adams,John,Quincy,6,Braintree,Massachusetts,Massachusetts,Democratic-Republican/National Republican,7,11,1767,2,23,1848,3,4,1825,3,4,1829,FALSE,FALSE
+Jackson,Andrew,,7,Lancaster County,Tennessee,Tennessee,Democratic,3,15,1767,6,8,1845,3,4,1829,3,4,1837,TRUE,FALSE
+Van Buren,Martin,,8,Kinderhook,New York,New York,Democratic,12,5,1782,7,24,1862,3,4,1837,3,4,1841,FALSE,FALSE
+Harrison,William,Henry,9,Charles City County,Ohio,Ohio,Whig,2,9,1773,4,4,1841,3,4,1841,4,4,1841,FALSE,FALSE
+Tyler,John,,10,Charles City County,Virginia,Virginia,Whig,3,29,1790,1,18,1862,4,4,1841,3,4,1845,FALSE,FALSE
+Polk,James,Knox,11,Mecklenburg County,North Carolina,Tennessee,Democratic,11,2,1795,6,15,1849,3,4,1845,3,4,1849,FALSE,FALSE
+Taylor,Zachary,,12,Montebello,Virginia,Louisiana,Whig,11,24,1784,7,9,1850,3,4,1849,7,9,1850,FALSE,FALSE
+Fillmore,Millard,,13,Cayuga County,New York,New York,Whig,1,7,1800,3,8,1874,7,9,1850,3,4,1853,FALSE,FALSE
+Pierce,Franklin,,14,Hillsboro,New Hampshire,New Hampshire,Democratic,11,3,1804,10,8,1869,3,4,1853,3,4,1857,FALSE,FALSE
+Buchanan,James,,15,Franklin County,Pennsylvania,Pennsylvania,Democratic,4,23,1791,6,1,1868,3,4,1857,3,4,1861,FALSE,FALSE
+Lincoln,Abraham,,16,LaRue County,Kentucky,Illinois,Republican/National Union,2,12,1809,4,15,1865,3,4,1861,4,15,1865,TRUE,TRUE
+Johnson,Andrew,,17,Raleigh,North Carolina,Tennessee,Democratic/National Union,12,29,1808,7,31,1875,4,15,1865,3,4,1869,FALSE,FALSE
+Grant,Ulysses,S,18,Point Pleasant,Ohio,Ohio,Republican,4,27,1822,7,23,1885,3,4,1869,3,4,1877,FALSE,FALSE
+Hayes,Rutherford,Birchard,19,Fremont,Ohio,Ohio,Republican,10,4,1822,1,17,1893,3,4,1877,3,4,1881,FALSE,FALSE
+Garfield,James,Abram,20,Cuyahoga County,Ohio,Ohio,Republican,11,19,1831,9,19,1881,3,4,1881,9,19,1881,TRUE,TRUE
+Arthur,Chester,Alan,21,Fairfield,Vermont,New York,Republican,10,5,1830,11,18,1886,9,19,1881,3,4,1885,FALSE,FALSE
+Cleveland,Grover,,22,Caldwell,New Jersey,New York,Democratic,3,18,1837,6,24,1908,3,4,1885,3,4,1889,FALSE,FALSE
+Harrison,Benjamin,,23,North Bend,Ohio,Indiana,Republican,8,20,1833,3,13,1901,3,4,1889,3,4,1893,FALSE,FALSE
+Cleveland,Grover,,24,Caldwell,New Jersey,New York,Democratic,3,18,1837,6,24,1908,3,4,1893,3,4,1897,FALSE,FALSE
+McKinley,William,,25,Niles,Ohio,Ohio,Republican,1,29,1843,9,14,1901,3,4,1897,9,14,1901,TRUE,TRUE
+Roosevelt,Theodore,,26,New York,New York,New York,Republican,10,27,1858,1,6,1919,9,14,1901,3,4,1909,TRUE,FALSE
+Taft,William,Howard,27,Cincinnati,Ohio,Ohio,Republican,9,15,1857,3,8,1930,3,4,1909,3,4,1913,FALSE,FALSE
+Wilson,Woodrow,,28,Staunton,Virginia,New Jersey,Democratic,12,28,1856,2,3,1924,3,4,1913,3,4,1921,FALSE,FALSE
+Harding,Warren,Gamaliel,29,Morrow County,Ohio,Ohio,Republican,11,2,1865,8,2,1923,3,4,1921,8,2,1923,FALSE,FALSE
+Coolidge,Calvin,,30,Plymouth,Vermont,Massachusetts,Republican,7,4,1872,1,5,1933,8,2,1923,3,4,1929,FALSE,FALSE
+Hoover,Herbert,Clark,31,West Branch,Iowa,Iowa,Republican,8,10,1874,10,20,1964,3,4,1929,3,4,1933,FALSE,FALSE
+Roosevelt,Franklin,Delano,32,Hyde Park,New York,New York,Democratic,1,30,1882,4,12,1945,3,4,1933,4,12,1945,TRUE,FALSE
+Truman,Harry,S,33,Barton County,Missouri,Missouri,Democratic,5,8,1884,12,26,1972,4,12,1945,1,20,1953,TRUE,FALSE
+Eisenhower,Dwight,David,34,Denison,Texas,Texas,Republican,10,14,1890,3,28,1969,1,20,1953,1,20,1961,FALSE,FALSE
+Kennedy,John,Fitzgerald,35,Brookline,Massachusetts,Massachusetts,Democratic,5,29,1917,11,22,1963,1,20,1961,11,22,1963,TRUE,TRUE
+Johnson,Lyndon,Baines,36,Gillespie County,Texas,Texas,Democratic,8,27,1908,1,22,1973,11,22,1963,1,20,1969,FALSE,FALSE
+Nixon,Richard,Milhous,37,Yorba Linda,California,California,Republican,1,9,1913,4,22,1994,1,20,1969,8,9,1974,FALSE,FALSE
+Ford,Gerald,Rudolph,38,Omaha,Nebraska,Michigan,Republican,7,14,1913,12,26,2006,8,9,1974,1,20,1977,TRUE,FALSE
+Carter,Jimmy,,39,Plains,Georgia,Georgia,Democratic,10,1,1924,,,,1,20,1977,1,20,1981,FALSE,FALSE
+Reagan,Ronald,Wilson,40,Tampico,Illinois,California,Republican,2,6,1911,6,5,2004,1,20,1981,1,20,1989,TRUE,FALSE
+Bush,George,Herbert Walker,41,Milton,Massachusetts,Texas,Republican,6,12,1924,,,,1,20,1989,1,20,1993,FALSE,FALSE
+Clinton,William,Jefferson,42,Hope,Arkansas,Arkansas,Democratic,8,19,1946,,,,1,20,1993,1,20,2001,FALSE,FALSE
+Bush,George,Walker,43,New Haven,Connecticut,Texas,Republican,7,6,1946,,,,1,20,2001,1,20,2009,FALSE,FALSE
+Obama,Barack,Hussein,44,Honolulu,Hawaii,Illinois,Democratic,8,4,1961,,,,1,20,2009,1,20,2017,FALSE,FALSE
+Trump,Donald,John,45,New York,New York,New York,Republican,6,14,1946,,,,1,20,2017,,,,FALSE,FALSE

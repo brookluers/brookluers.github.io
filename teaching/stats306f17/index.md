@@ -23,7 +23,7 @@ Office hours (in the <a href="https://lsa.umich.edu/slc/contact-us.html" target=
 | September 12  | [Lab 1](lab1) |
 | September 19  | [Lab 2](lab2) |
 | September 26  | [Lab 3](lab3) |
-| October 3     | Lab 4         |
+| October 3     | [Lab 4](lab4)  |
 | October 10    | Lab 5         |
 | October 17    | Fall break, no lab |
 | October 24    | Lab 6         |
