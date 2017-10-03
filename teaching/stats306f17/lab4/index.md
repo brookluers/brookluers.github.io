@@ -20,6 +20,8 @@ coursename: Statistics 306, Fall 2017
 
 ## Data transformation with `dplyr`
 
+Reference material: [Chapter 5](http://r4ds.had.co.nz/transform.html){:target="\_blank"}
+
 There are five important `dplyr` functions or "verbs" for transforming a data frame. These functions can be chained together using the pipe operator `%>%`, and we use `group_by` to apply those functions within groups defined by one or more variables.
 
 Let's review these functions with data on the 45 U.S. presidents. Download and import [`presidents.txt`](/data/presidents.txt){:target="\_blank"}:
@@ -195,9 +197,7 @@ Answer the following questions using the five `dplyr` functions discussed above.
 
 ## Exercise 2
 
-In this exercise we will practice the data transformations described in [Chapter 5](http://r4ds.had.co.nz/transform.html).
-
-We will use data on cyclist-involved crashes in Michigan (from [MTCF](https://www.michigantrafficcrashfacts.org/)). Download `cyclist_crashes.txt` from our Canvas site. Load the data into a data frame called `cr`. Each row in this data frame represents a single car-cyclist crash in Michigan.
+For this exercise we will use data on cyclist-involved crashes in Michigan (from [MTCF](https://www.michigantrafficcrashfacts.org/){:target="\_blank"}). Download `cyclist_crashes.txt` from our Canvas site. Load the data into a data frame called `cr`. Each row in this data frame represents a single car-cyclist crash in Michigan.
 
 Run the following code to import the data and create a variable corresponding to the hour when each crash occurred.
 
