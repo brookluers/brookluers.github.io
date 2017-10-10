@@ -10,7 +10,7 @@ coursename: Statistics 306, Fall 2017
 -   [Exam review exercises](#exam-review-exercises)
 -   [Extra exercise (using your computer)](#extra-exercise-using-your-computer)
 
-To complete these exercises, first download `cyclist_crashes.txt` into your working directory (see Lab 4). Then download and run the R script `import_crashes.R` (available [here](/import_crashes.R){:target="\_blank"}) which imports these data into a data frame called `cr` and restructures some of the variables.
+To complete these exercises, first download `cyclist_crashes.txt` into your working directory (see [Lab 4](../lab4)). Then download and run the R script `import_crashes.R` (available [here](/import_crashes.R){:target="\_blank"}) which imports these data into a data frame called `cr` and restructures some of the variables.
 
 The `source` command will run all the commands in a file.
 
@@ -106,4 +106,4 @@ Continuing with the crash data, recreate the following plot:
 
 <img src="crash-timeofday-1.png" align="center">
 
-Map the `x` aesthetic to the `hour_num` variable. You will need to compute the `y` variable using `group_by`, `summarise` and `mutate`.This displays the proportion of crashes, in each day of the week, that occur during each hour of the day (all years and counties are pooled). 
+Map the `x` aesthetic to the `hour_num` variable. You will need to compute the `y` variable using `group_by`, `summarise` and `mutate`. This displays the proportion of crashes, in each day of the week, that occur during each hour of the day (all years and counties are pooled). 
