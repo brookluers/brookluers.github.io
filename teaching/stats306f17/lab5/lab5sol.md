@@ -3,40 +3,47 @@ layout: coursepage
 title: Lab 5
 courseurl: /teaching/stats306f17/
 coursename: Statistics 306, Fall 2017
+parentname: Lab 5
+parenturl: /teaching/stats306f17/lab5
 ---
 
-# Lab 5, October 10
-
-[Solutions](lab5sol)
+# Lab 5, October 10, Solutions
 
 -   [Exam review exercises](#exam-review-exercises)
 -   [Extra exercise (using your computer)](#extra-exercise-using-your-computer)
 
-To complete these exercises, first download `cyclist_crashes.txt` into your working directory (see [Lab 4](../lab4)). Then download and run the R script `import_crashes.R` (available [here](/import_crashes.R){:target="\_blank"}) which imports these data into a data frame called `cr` and restructures some of the variables.
 
-The `source` command will run all the commands in a file.
-
-``` r
-source('import_crashes.R')
-```
-
-## Exam review exercises
-
-**Complete these exercises without your computer!**
+## Exam review exercises (solutions)
 
 1.  The `day` variable is a factor (categorical) variable containing the day of the week when the cyclist crash occurred. `month` contains the month name.
 
     Consider the following graphs:
 
-    <img src="ex1.png" align="center">
+    <img src="../ex1.png" align="center">
     (a) What `geom` is used in both graphs?  
+    	     `geom_bar`  
     (b) What variables are mapped to the `x` and `y` aesthetics?  
     (c) Write the commands to create both graphs.  
+    
+    ```r
+        ggplot(cr)+geom_bar(aes(x=month, fill=day), position='fill')
+        ggplot(cr) + geom_bar(aes(x=month, fill=day))
+    ```  
+      
     (d) How would a `ggplot` expert describe the difference between the two graphs (using R and `ggplot` jargon)?   
-    (e) How would a regular person describe the difference between the two graphs (what do they communicate about cyclist-involved crashes)?  
+    	The position adjustment is `fill` in the left graph and `stack` (the default) in the right-side graph.   
+    
+    (e) How would a regular person describe the difference between the two graphs (what do they communicate about cyclist-involved crashes)?   
+            With `position='fill'`, proportions are displayed instead of raw counts. It is difficult to compare the distribution of crashes over days of the week when displaying the raw counts.  
 
+    
 1.  Write a command which creates a new data frame, called `cr_wayne`, which only contains crashes that occurred in Wayne county in 2013, 2014, and 2015 (the latest year in the data frame `cr`).
 
+    ``` r
+    cr_wayne <-
+      filter(cr, County=='Wayne', year >= 2013)
+    ```
+    
     Then consider this command:
 
     ``` r
@@ -46,8 +53,19 @@ source('import_crashes.R')
       ggplot(aes(x=month_num, y=ncr)) + 
       geom_line()
     ```
-    <img src="badwayne-1.png" align="center">
+    <img src="../badwayne-1.png" align="center">
     What aesthetic should be altered to fix the plot? Write the correct `ggplot` command so that the number of crashes in each month is plotted seperately for each year.
+    
+    We need to map the `group` aesthetic:
+    
+    ```r
+    cr_wayne %>% 
+      group_by(month_num, year) %>%
+      summarize(ncr = n()) %>%
+      ggplot(aes(x=month_num, y=ncr, group=year)) + 
+      geom_line()
+    ```
+
 
 1.  Consider the following command.
 
@@ -62,10 +80,25 @@ source('import_crashes.R')
     ```
 
     (a) Describe, in words, what is acocmplished by lines 1--3. Write down two (possible) rows of the data frame that results from running only lines 1--3 (with the final `%>%` operator removed).  
+        Comptutes the number of crashes in each year-month combination for Washtenaw county:
+            
+            ## # A tibble: 137 x 3
+            ## # Groups:   year [?]
+            ##    year   month    ncr
+            ##    <int>  <fctr>  <int>
+            ## 1  2004    March   2
+            ## 2  2004    April   5
+            ## 3  2004    May    12	
+    
+    	
     (b) To describe lines 4 and 5, complete these sentences:  
-            "For each ____, rank the ____s by the number of ____s that occurred. Then keep the two ____s with the (highest/lowest) number of ____s."  
+	        For each **year**, rank the **months** (in that year) by the number of **crashes** that occured. Then keep the two **months** with the **highest** number of crashes.  
+
     (c) Now describe what the entire command accomplishes. Write down possible values for the first three rows of the result.  
-    (d) How many rows does the resulting data frame contain? Assume that there were cyclist-car crashes in all years and months in Washtenaw county. There are 12 years represented in this data set.
+             For each year in Washtenaw county, find the two months with the highest number of cyclist-involved crashes. Sort from latest year to earliest year.  
+
+    (d) How many rows does the resulting data frame contain? Assume that there were cyclist-car crashes in all years and months in Washtenaw county. There are 12 years represented in this data set.  
+            26 rows  
 
 1.  Recall the data frame `cr_year`, which contains the number of cyclist-car crashes in each year and County:
 
@@ -92,20 +125,36 @@ source('import_crashes.R')
                       "Oakland","Lenawee","Monroe")
     ```
 
-    Fill in the following code to create the graph below. The blue line and points plot the number of crashes for Washtenaw county. (The legend is hidden.)
+    Fill in the following code to create the graph below. The blue line and points plot the number of crashes for Washtenaw county.
 
     ``` r
-    ggplot(filter(cr_year, ...), #fill in the arguments to filter
-           aes(...)) + #fill in the arguments to aes()
-           ... # two geoms are required
+    ggplot(filter(cr_year, County %in% county_list), 
+            aes(x=year,y=ncrash,group=County)) +
+      geom_line(aes(color=County=="Washtenaw"), show.legend = FALSE) +
+      geom_point(aes(color=County=="Washtenaw"),show.legend = FALSE)
+      
     ```
-
-    <img src="unnamed-chunk-7-1.png" align="center">
+    
+    <img src="../unnamed-chunk-7-1.png" align="center">
 
 ## Extra exercise (using your computer)
 
 Continuing with the crash data, recreate the following plot:
 
-<img src="crash-timeofday-1.png" align="center">
+<img src="../crash-timeofday-1.png" align="center">
 
 Map the `x` aesthetic to the `hour_num` variable. You will need to compute the `y` variable using `group_by`, `summarise` and `mutate`. This displays the proportion of crashes, in each day of the week, that occur during each hour of the day (all years and counties are pooled). 
+
+```r
+cr %>% 
+  filter(!is.na(hour_num)) %>%
+  group_by(day, hour_num) %>%
+  summarise(ncr_hour = n()) %>%
+  group_by(day) %>%
+  mutate(cr_prop_hour = ncr_hour / sum(ncr_hour)) %>%
+  ggplot(aes(x=hour_num,y=cr_prop_hour)) + 
+  geom_line(aes(group=day)) + 
+  facet_wrap(~day) + xlab("Hour of day")+
+  ylab("Proportion of crashes")+
+  ggtitle("Within-day timing of cyclist-car crashes")
+```
