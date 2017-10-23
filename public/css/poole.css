@@ -83,7 +83,7 @@ a:focus {
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: 0.5rem;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 1.75;
   color: #313131;
   text-rendering: optimizeLegibility;
@@ -169,7 +169,7 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .8rem;
+  font-size: .7rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;
