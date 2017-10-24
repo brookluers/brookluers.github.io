@@ -15,7 +15,7 @@ B760 East Hall
 Brook Luers  
 luers@umich.edu  
 Office hours (in the <a href="https://lsa.umich.edu/slc/contact-us.html" target="_blank">SLC</a>):  
-* Tuesday 2:45--4:15
+* Monday 3:15--4:45
 * Thursday 3:00--4:30
 
 ## Schedule
