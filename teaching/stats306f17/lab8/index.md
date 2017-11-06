@@ -14,7 +14,7 @@ coursename: Statistics 306, Fall 2017
 
 ## Separating and uniting
 
-In Lab 4 we learned about `dplyr` functions using data on the 45 U.S. presidents.
+In [Lab 4](../lab4) we learned about `dplyr` functions using data on the 45 U.S. presidents.
 
 For this example, we'll look at a messier version of the same dataset. The file `presidents_messy.txt` is on [Canvas](https://umich.instructure.com/courses/181629/files){:target="_blank"}.
 
@@ -161,7 +161,7 @@ pres %>% mutate(inaug_age = inaug_year - birth_year) %>%
   theme(panel.background=element_rect(fill=NA))
 ```
 
-<img src="pres-ageplot.png" align="center">
+<img src="pres-ageplot.png" align="center" style="max-width:75%;">
 
 ## Exercise: Cyclist crashes in MI (again)
 

@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 6, October 24
 
+[Solutions](lab6sol)
+
 -   [Data Import](#data-import)
 -   [Exercise: Airbnb](#exercise-airbnb)
     -   [Reading a csv file](#reading-a-csv-file)
