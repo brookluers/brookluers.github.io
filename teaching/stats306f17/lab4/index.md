@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 4, October 3
 
+[Solutions](lab4sol)
+
 -   [Data transformation with `dplyr`](#data-transformation-with-dplyr)
     -   [`filter`](#filter)
     -   [`select`](#select)
