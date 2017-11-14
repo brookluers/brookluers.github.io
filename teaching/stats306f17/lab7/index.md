@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 7, October 31
 
+[Solutions](lab7sol)
+
 -   [Tidy data](#tidy-data)
 -   [Exercise: University of Michigan Enrollment](#exercise-university-of-michigan-enrollment)
     -   [Part 1](#part-1)
@@ -190,7 +192,7 @@ d05 <- read_csv('umich_enrollment05.csv')
         ## # ... with 3 more variables: `Native American` <dbl>, White <dbl>,
         ## #   Unknown <dbl>
 
-    Each column contains the percent undergraduate enrollment in one of the race/ethnicity categories.
+    Each column contains the percent undergraduate enrollment in one of the race/ethnicity categories. The `All` column still contains the count across all race/ethnicity categories, since it was unaffected by `mutate_at` from the previous step.
 
 3.  Use `gather` so that `d_ut` has a column called `reth`, containing the race/ethnicity category, and a column called `pct`, containing the percent enrollment in that category. Then create the following plot.
     
