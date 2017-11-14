@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 8, November 7
 
+[Solutions](lab8sol)
+
 -   [Separating and uniting](#separating-and-uniting)
     -   [`unite`](#unite)
     -   [`separate`](#separate)
