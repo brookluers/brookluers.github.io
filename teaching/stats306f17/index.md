@@ -30,3 +30,4 @@ Office hours (in the <a href="https://lsa.umich.edu/slc/contact-us.html" target=
 | October 31    | [Lab 7](lab7)   |
 | November 7    | [Lab 8](lab8)   |
 | November 14   | [Lab 9](lab9)   |
+| November 21   | [Lab 10](lab10)   |
