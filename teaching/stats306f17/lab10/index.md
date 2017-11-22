@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 10, November 21
 
+[Solutions](lab10sol)
+
 -   [A few more `stringr` functions](#a-few-more-stringr-functions)
     -   [`str_replace`](#str_replace)
     -   [`str_c`](#str_c)
