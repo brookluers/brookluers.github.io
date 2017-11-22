@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 9, November 14
 
+[Solutions](lab9sol)
+
 -  [Regular expressions review](#regular-expressions-review)
     -   [Literal strings](#literal-strings)
     -   [Anchors](#anchors)
