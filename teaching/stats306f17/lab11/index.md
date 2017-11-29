@@ -18,9 +18,9 @@ library(stringr)
 
 ### Grouped matches
 
-As you saw in [Lab 10](http://www.brookluers.com/teaching/stats306f17/lab10/#regular-expression-backreferences){:target="_blank"}, grouping a regular expression with parentheses allows us to reference those groups later in the expression, or when replacing parts of a string with `str_replace`. We can also extract each part of a grouped expression using `str_match` or `tidyr::extract`. See [section 14.4](http://r4ds.had.co.nz/strings.html#grouped-matches) in the textbook.
+As you saw in [Lab 10](http://www.brookluers.com/teaching/stats306f17/lab10/#regular-expression-backreferences){:target="_blank"}, grouping a regular expression with parentheses allows us to reference those groups later in the expression, or when replacing parts of a string with `str_replace`. We can also extract each part of a grouped expression using `str_match` or `tidyr::extract`. See [section 14.4](http://r4ds.had.co.nz/strings.html#grouped-matches){:target="_blank"} in the textbook.
 
-`str_match` produces a matrix with one column for the entire matched substring and one column for each group:
+[`str_match`](http://stringr.tidyverse.org/reference/str_match.html){:target="_blank"} produces a matrix with one column for the entire matched substring and one column for each group:
 
 ``` r
 petnames <- c("dog: Fido", "cat: Clarence", "cat: Milo", "guinea pig: Alan", "ferret: Dennis")
@@ -34,7 +34,7 @@ str_match(petnames, "([a-zA-Z ]+): ([A-Za-z]+)")
     ## [4,] "guinea pig: Alan" "guinea pig" "Alan"    
     ## [5,] "ferret: Dennis"   "ferret"     "Dennis"
 
-`extract` from the `tidyr` package is useful when we have text data inside a data frame.
+[`extract`](http://tidyr.tidyverse.org/reference/extract.html){:target="_blank"} from the `tidyr` package is useful when we have text data inside a data frame.
 
 ``` r
 (petdf <- tibble(petnames))
@@ -126,9 +126,9 @@ We can use this function to illustrate [Simpson's Paradox](https://en.wikipedia.
 
 ``` r
 x <- seq(0, 20, length.out=120)
-d1 <- regSim(x[1:40], 0, -0.3)
-d2 <- regSim(x[41:80], 3, -0.3)
-d3 <- regSim(x[81:120], 8, -0.3)
+d1 <- regSim(x[1:40], 0, -0.3, 1)
+d2 <- regSim(x[41:80], 3, -0.3, 2)
+d3 <- regSim(x[81:120], 8, -0.3, 3)
 ggplot(bind_rows(d1, d2, d3, .id='group')) +
   geom_point(aes(x=x,y=y,color=group),shape=1) + 
   stat_smooth(aes(x=x,y=y), method='lm',se=F, color = 'black',
@@ -140,8 +140,7 @@ ggplot(bind_rows(d1, d2, d3, .id='group')) +
 
 ### Exercise
 
-The car-cyclist crash data set contains the approximate time when each crash occurred.
-
+The car-cyclist crash data set contains the approximate time when each crash occurred. 
 ``` r
 cr <- read_csv('cyclist_crashes.txt')
 head(cr$Time.of.Day)
@@ -150,9 +149,11 @@ head(cr$Time.of.Day)
     ## [1] "7:00 PM - 8:00 PM"   "10:00 AM - 11:00 AM" "3:00 PM - 4:00 PM"  
     ## [4] "8:00 PM - 9:00 PM"   "4:00 PM - 5:00 PM"   "4:00 AM - 5:00 AM"
 
-In this exercise we will extract the numeric hour from `Time.of.Day` and convert it to 24-hour time.
+In [Lab 4](http://www.brookluers.com/teaching/stats306f17/lab4/#exercise-2){:target="_blank"} we wrote a lengthy command to convert the variable `Time.of.Day` to a numeric hour in 24-hour format.
 
-1.  Write a function called `time24` that takes two arguments: `h12`, a vector of integers, and `pm` a logical vector. The function should convert the integers in `h12` from 12-hour time to 24-hour time. The vector `pm` indicates whether the corresponding element of `h12` is an hour that occurrs before 12 noon.  
+In this exercise we will use regular expressions to extract the numeric hour from `Time.of.Day` and convert it to 24-hour time.
+
+1.  Write a function called `time24` that takes two arguments: `h12`, a vector of integers, and `pm` a logical vector. The function should convert the integers in `h12` from 12-hour time to 24-hour time. The vector `pm` indicates whether the corresponding element of `h12` is an hour that occurrs after 12 noon.  
 
     Here is an example of the expected output:  
 
@@ -172,6 +173,28 @@ In this exercise we will extract the numeric hour from `Time.of.Day` and convert
     ```
 
         ## Error in time24(c(11, 10), c(FALSE, TRUE, TRUE, TRUE)): unequal length vectors
+
+    Hints:
+
+    -   The function `ifelse` may be useful:
+
+        ```r
+        x <- c(TRUE, TRUE, FALSE)
+        y <- c(1, 2, 3)
+        ifelse(x, y, y * 1000)
+        ```
+
+            ## [1]    1    2 3000
+
+
+    -   You can use the `%%` operator to handle 12 p.m. and 12 a.m.:
+
+        ```r
+        1:12 %% 12
+        ```  
+
+            ##  [1]  1  2  3  4  5  6  7  8  9 10 11  0
+
 
 1.  What are the unique values of `cr$Time.of.Day`? Replace ocurrences of `midnight` with `AM` and replace `noon` with `PM`.
 
