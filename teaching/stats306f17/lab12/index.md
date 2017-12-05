@@ -18,7 +18,7 @@ library(stringr)
 
 ### `for` loops
 
-Reference: section [21.2](http://r4ds.had.co.nz/iteration.html#for-loops)
+Reference: section [21.2](http://r4ds.had.co.nz/iteration.html#for-loops){:target="_blank"}
 
 A for loop executes a block of code (the "body" of the loop) once for each item in a sequence.
 In this example, the sequence consists of the integers `1`, `2`, ..., `n`. The loop body is executed once for each item in the sequence, and the variable `i` is assigned to the corresponding sequence item in each iteration. Each iteration of this loop computes the `i`th Fibonacci number.
@@ -57,10 +57,10 @@ fibn
 
 This exercise demonstrates how to import many data files into a single data frame and reviews many of the concepts we have covered this semetser.
 
-Start by downloading `acs-income.zip` from our [Canvas site](https://umich.instructure.com/courses/181629/files). Uncompress this file in your working directory.
+Start by downloading `acs-income.zip` from our [Canvas site](https://umich.instructure.com/courses/181629/files){:target="_blank"}. Uncompress this file in your working directory.
 The data, from the American Communtiy Survey, describe the household income distribution of each county in the six New England states. There are five pairs of files, one for each of the years 2011, 2012, 2013, 2014, and 2015. The `_metadata.csv` files contain column names and descriptions for each column in the corresponding data files.
 
-1.  Start by creating a character vector containing the names of each metadata file. Complete this command by specifying a regular expression to match the files ending with `_metadata.csv`. If your uncompressed files are located in a folder callsed `acs-income`, your command will look like this:
+1.  Start by creating a character vector containing the names of each metadata file. Complete this command by specifying a regular expression to match the files ending with `_metadata.csv`. If your uncompressed files are located in a folder called `acs-income`, your command will look like this:
 
     ``` r
     fnames <- dir(path="acs-income/",
@@ -77,7 +77,7 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## [3] "ACS_13_5YR_S1901_metadata.csv" "ACS_14_5YR_S1901_metadata.csv"
         ## [5] "ACS_15_5YR_S1901_metadata.csv"
 
-2.  Extract the two-digit year from each file name in `fnames`, then convert them to four-digit years. Complete the following commands.
+2.  Extract the two-digit year from each file name in `fnames`, then convert the two-digit years to four-digit years. Complete the following commands.
 
     First extract the two-digit year:
 
@@ -133,12 +133,12 @@ The data, from the American Communtiy Survey, describe the household income dist
     In each iteration, provide an argument to `read_csv` so the columns of the imported data frame are named `varname` and `vardesc`.
 
     ``` r
-    for (i in seq_along(fnames)) {
-      metadata[[i]] <- read_csv(...)
+    for (i in seq_along(fnames)) { 
+      metadata[[i]] <- read_csv(...) # complete this line
     }
     ```
 
-6.  To check your answer, print the element of the list `metadata` named `"2014"`:
+    To check your answer, print the element of the list `metadata` named `"2014"`:
 
         ## # A tibble: 131 x 2
         ##              varname                                         vardesc
@@ -153,11 +153,135 @@ The data, from the American Communtiy Survey, describe the household income dist
         ##  8     HC03_EST_VC01        Married-couple families; Estimate; Total
         ##  9     HC03_MOE_VC01 Married-couple families; Margin of Error; Total
         ## 10     HC04_EST_VC01           Nonfamily households; Estimate; Total
-        ## # ... with 121 more rowsex County, Connecticut  77095    7.8
+        ## # ... with 121 more rows
+
+
+7.  Now we can combine this list of data frames into a single data frame with `bind_rows`. This function takes a list of data frames and "stacks" them vertically. The `.id` argument will create a column called `year` to identify the source data frame for each row.
+
+    ``` r
+    metadata <- bind_rows(metadata, .id='year')
+    head(metadata)
+    ```
+
+        ## # A tibble: 6 x 3
+        ##    year           varname                            vardesc
+        ##   <chr>             <chr>                              <chr>
+        ## 1  2011            GEO.id                                 Id
+        ## 2  2011           GEO.id2                                Id2
+        ## 3  2011 GEO.display-label                          Geography
+        ## 4  2011     HC01_EST_VC01        Households; Estimate; Total
+        ## 5  2011     HC01_MOE_VC01 Households; Margin of Error; Total
+        ## 6  2011     HC02_EST_VC01          Families; Estimate; Total
+
+8.  Import the five data files into a data frame called `incomedata`, using the previous few steps as a guide. Start by creating another vector of file names, `fnames2`. Use the `dir` function and a regular expression to match the data file names, which all end with `S1901.csv`.
+
+    ``` r
+    fnames2 # the data file names
+    ```
+
+        ## [1] "ACS_11_5YR_S1901.csv" "ACS_12_5YR_S1901.csv" "ACS_13_5YR_S1901.csv"
+        ## [4] "ACS_14_5YR_S1901.csv" "ACS_15_5YR_S1901.csv"
+
+    Now write a for loop to import the five data files. Do not specify column names when importing these files; we will use the variable descriptions in `metadata` to understand what each column represents.
+
+    ``` r
+    incomedata <- vector("list", length(fnames2))
+    names(incomedata) <- str_c(..., str_extract(fnames2, ... )) # complete this line, the names correspond to the four-digit years
+    for (...) {               # complete this line
+      incomedata[[i]] <- ...  # complete this line
+    }
+    incomedata <- bind_rows(incomedata, .id='year')
+    ```
+
+    Check your answer:
+
+    ``` r
+    dim(incomedata)
+    ```
+
+        ## [1] 335 132
+
+    ``` r
+    count(incomedata, year)
+    ```
+
+        ## # A tibble: 5 x 2
+        ##    year     n
+        ##   <chr> <int>
+        ## 1  2011    67
+        ## 2  2012    67
+        ## 3  2013    67
+        ## 4  2014    67
+        ## 5  2015    67
+
+9.  Print the unique values of `metadata$vardesc` containing the string `Households; Estimate;`. You should see 16 variable descriptions, most of which correspond to income categories (e.g. households earning between 10,000 and 14,999 dollars per year).
+    We will focus on just two of these variables: the proportion of households earning more than $200,000 per year and the median household income.
+10. Complete this command to produce the output that follows.
+
+    ``` r
+    filter(metadata, str_detect(vardesc, ...))
+    ```
+
+        ## # A tibble: 5 x 3
+        ##    year       varname                                vardesc
+        ##   <chr>         <chr>                                  <chr>
+        ## 1  2011 HC01_EST_VC11 Households; Estimate; $200,000 or more
+        ## 2  2012 HC01_EST_VC11 Households; Estimate; $200,000 or more
+        ## 3  2013 HC01_EST_VC11 Households; Estimate; $200,000 or more
+        ## 4  2014 HC01_EST_VC11 Households; Estimate; $200,000 or more
+        ## 5  2015 HC01_EST_VC11 Households; Estimate; $200,000 or more
+
+    We see that every year has the same variable name for the proportion of households earning more than $200,000 (this might not always be the case with Census data).
+    Store the variable name (`HC01...`) in an object called `var_maxinc`.
+11. Complete the following command to check the variable name for median household income.
+
+    ``` r
+    filter(metadata, str_detect(vardesc, ...))
+    ```
+
+        ## # A tibble: 5 x 3
+        ##    year       varname                                       vardesc
+        ##   <chr>         <chr>                                         <chr>
+        ## 1  2011 HC01_EST_VC13 Households; Estimate; Median income (dollars)
+        ## 2  2012 HC01_EST_VC13 Households; Estimate; Median income (dollars)
+        ## 3  2013 HC01_EST_VC13 Households; Estimate; Median income (dollars)
+        ## 4  2014 HC01_EST_VC13 Households; Estimate; Median income (dollars)
+        ## 5  2015 HC01_EST_VC13 Households; Estimate; Median income (dollars)
+
+    Again, all five years use the same variable name for median household income. Store this variable name in an object called `var_median`.
+
+12. From `incomedata`, select the columns `year`, `Geo.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename these columns so your result looks like this:
+
+        ## # A tibble: 335 x 4
+        ##     year                         county median gt200k
+        ##    <int>                          <chr>  <int>  <dbl>
+        ##  1  2011  Fairfield County, Connecticut  82558   16.7
+        ##  2  2011   Hartford County, Connecticut  64007    6.5
+        ##  3  2011 Litchfield County, Connecticut  71497    6.6
+        ##  4  2011  Middlesex County, Connecticut  77095    7.8
         ##  5  2011  New Haven County, Connecticut  62497    5.9
         ##  6  2011 New London County, Connecticut  67010    5.2
         ##  7  2011    Tolland County, Connecticut  80333    5.6
-        ##  8  2011    Windham County, Connartford  Connecticut  64007    6.5
+        ##  8  2011    Windham County, Connecticut  60063    2.6
+        ##  9  2011     Androscoggin County, Maine  45699    1.4
+        ## 10  2011        Aroostook County, Maine  37138    1.1
+        ## # ... with 325 more rows
+
+    Make sure your `year` variable is either an `integer` or `double`. Store this data frame in an object called `incomedata_small`.
+
+13. Use `separate` to add a `state` column to `incomedata_small`:
+
+    ``` r
+    incomedata_small <-
+      separate(incomedata_small, ...) # complete this line
+    incomedata_small
+    ```
+
+        ## # A tibble: 335 x 5
+        ##     year        county       state median gt200k
+        ##  * <int>         <chr>       <chr>  <int>  <dbl>
+        ##  1  2011    Fairfield  Connecticut  82558   16.7
+        ##  2  2011     Hartford  Connecticut  64007    6.5
         ##  3  2011   Litchfield  Connecticut  71497    6.6
         ##  4  2011    Middlesex  Connecticut  77095    7.8
         ##  5  2011    New Haven  Connecticut  62497    5.9
@@ -365,7 +489,7 @@ Here are some more exercises using the same data from above. You need to complet
         ##  [7] "$75,000 to $99,999"   "$100,000 to $149,999" "$150,000 to $199,999"
         ## [10] "$200,000 or more"
 
-6.  Run the following command so that the vector `income_descriptions` is [named](http://r4ds.had.co.nz/vectors.html#naming-vectors).
+6.  Run the following command so that the vector `income_descriptions` is [named](http://r4ds.had.co.nz/vectors.html#naming-vectors){:target="_blank"}.
 
     ``` r
     names(income_descriptions) <- incvars_dist
