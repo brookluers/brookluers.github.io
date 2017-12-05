@@ -1,0 +1,434 @@
+---
+layout: coursepage
+title: Lab 12
+courseurl: /teaching/stats306f17/
+coursename: Statistics 306, Fall 2017
+---
+
+# Lab 12, November 28
+
+-   [`for` loops](#for-loops)
+-   [Exercise Part 1](#exercise-part-1)
+-   [Exercise part 2 (extra review)](#exercise-part-2-extra-review)
+
+``` r
+library(tidyverse)
+library(stringr)
+```
+
+### `for` loops
+
+Reference: section [21.2](http://r4ds.had.co.nz/iteration.html#for-loops)
+
+A for loop executes a block of code (the "body" of the loop) once for each item in a sequence.
+In this example, the sequence consists of the integers `1`, `2`, ..., `n`. The loop body is executed once for each item in the sequence, and the variable `i` is assigned to the corresponding sequence item in each iteration. Each iteration of this loop computes the `i`th Fibonacci number.
+
+``` r
+prev <- 0
+cur <- 1
+n <- 10
+fibn <- vector('integer', n)
+for (i in seq_along(fibn)){
+  print(str_c("i = ", i))
+  fibn[i] <- prev + cur
+  prev <- cur
+  cur <- fibn[i]
+}
+```
+
+    ## [1] "i = 1"
+    ## [1] "i = 2"
+    ## [1] "i = 3"
+    ## [1] "i = 4"
+    ## [1] "i = 5"
+    ## [1] "i = 6"
+    ## [1] "i = 7"
+    ## [1] "i = 8"
+    ## [1] "i = 9"
+    ## [1] "i = 10"
+
+``` r
+fibn
+```
+
+    ##  [1]  1  2  3  5  8 13 21 34 55 89
+
+### Exercise Part 1
+
+This exercise demonstrates how to import many data files into a single data frame and reviews many of the concepts we have covered this semetser.
+
+Start by downloading `acs-income.zip` from our [Canvas site](https://umich.instructure.com/courses/181629/files). Uncompress this file in your working directory.
+The data, from the American Communtiy Survey, describe the household income distribution of each county in the six New England states. There are five pairs of files, one for each of the years 2011, 2012, 2013, 2014, and 2015. The `_metadata.csv` files contain column names and descriptions for each column in the corresponding data files.
+
+1.  Start by creating a character vector containing the names of each metadata file. Complete this command by specifying a regular expression to match the files ending with `_metadata.csv`. If your uncompressed files are located in a folder callsed `acs-income`, your command will look like this:
+
+    ``` r
+    fnames <- dir(path="acs-income/",
+                  pattern="") # complete this line
+    ```
+
+    If the 10 `csv` files are in your working directory, then you can omit the `path=` argument.
+
+    ``` r
+    fnames
+    ```
+
+        ## [1] "ACS_11_5YR_S1901_metadata.csv" "ACS_12_5YR_S1901_metadata.csv"
+        ## [3] "ACS_13_5YR_S1901_metadata.csv" "ACS_14_5YR_S1901_metadata.csv"
+        ## [5] "ACS_15_5YR_S1901_metadata.csv"
+
+2.  Extract the two-digit year from each file name in `fnames`, then convert them to four-digit years. Complete the following commands.
+
+    First extract the two-digit year:
+
+    ``` r
+    fyears <- str_extract(fnames, ...) # complete this command
+    ```
+
+    ``` r
+    fyears
+    ```
+
+        ## [1] "11" "12" "13" "14" "15"
+
+    Then prepend `20` to convert the two-digit years to four-digit years.
+
+    ``` r
+    fyears <- str_c(...) # complete this command
+    ```
+
+    ``` r
+    fyears
+    ```
+
+        ## [1] "2011" "2012" "2013" "2014" "2015"
+
+3.  Run these commands to create a placeholder list where we will store the metadata for each year:
+
+    ``` r
+    metadata <- vector("list", length(fyears))
+    names(metadata) <- fyears
+    metadata
+    ```
+
+        ## $`2011`
+        ## NULL
+        ## 
+        ## $`2012`
+        ## NULL
+        ## 
+        ## $`2013`
+        ## NULL
+        ## 
+        ## $`2014`
+        ## NULL
+        ## 
+        ## $`2015`
+        ## NULL
+
+4.  Write the command to display the second element of the vector `fnames`.
+
+5.  Complete the body of the following for loop.
+    Each iteration of the loop imports the metadata file corresponding to the `i`th element of `fnames` and stores the result as the `i`th element of `metadata`.
+    In each iteration, provide an argument to `read_csv` so the columns of the imported data frame are named `varname` and `vardesc`.
+
+    ``` r
+    for (i in seq_along(fnames)) {
+      metadata[[i]] <- read_csv(...)
+    }
+    ```
+
+6.  To check your answer, print the element of the list `metadata` named `"2014"`:
+
+        ## # A tibble: 131 x 2
+        ##              varname                                         vardesc
+        ##                <chr>                                           <chr>
+        ##  1            GEO.id                                              Id
+        ##  2           GEO.id2                                             Id2
+        ##  3 GEO.display-label                                       Geography
+        ##  4     HC01_EST_VC01                     Households; Estimate; Total
+        ##  5     HC01_MOE_VC01              Households; Margin of Error; Total
+        ##  6     HC02_EST_VC01                       Families; Estimate; Total
+        ##  7     HC02_MOE_VC01                Families; Margin of Error; Total
+        ##  8     HC03_EST_VC01        Married-couple families; Estimate; Total
+        ##  9     HC03_MOE_VC01 Married-couple families; Margin of Error; Total
+        ## 10     HC04_EST_VC01           Nonfamily households; Estimate; Total
+        ## # ... with 121 more rowsex County, Connecticut  77095    7.8
+        ##  5  2011  New Haven County, Connecticut  62497    5.9
+        ##  6  2011 New London County, Connecticut  67010    5.2
+        ##  7  2011    Tolland County, Connecticut  80333    5.6
+        ##  8  2011    Windham County, Connartford  Connecticut  64007    6.5
+        ##  3  2011   Litchfield  Connecticut  71497    6.6
+        ##  4  2011    Middlesex  Connecticut  77095    7.8
+        ##  5  2011    New Haven  Connecticut  62497    5.9
+        ##  6  2011   New London  Connecticut  67010    5.2
+        ##  7  2011      Tolland  Connecticut  80333    5.6
+        ##  8  2011      Windham  Connecticut  60063    2.6
+        ##  9  2011 Androscoggin        Maine  45699    1.4
+        ## 10  2011    Aroostook        Maine  37138    1.1
+        ## # ... with 325 more rows
+
+14. Write a command to check if there are any county names that are duplicated across states. Start by filtering `incomedata_small` to a single year. Then use one or more `dplyr` functions to find county names that are repeated across multiple states.
+
+15. Create a data frame called `top2counties` that contains, for each state, the two counties with the highest proportion of households earning more than $200,000 in 2015:
+
+    ``` r
+    top2counties
+    ```
+
+        ## # A tibble: 12 x 5
+        ## # Groups:   state [6]
+        ##     year        county         state median gt200k
+        ##    <int>         <chr>         <chr>  <int>  <dbl>
+        ##  1  2015    Fairfield    Connecticut  84233   18.1
+        ##  2  2015    Middlesex    Connecticut  79893    9.6
+        ##  3  2015   Cumberland          Maine  60051    5.7
+        ##  4  2015         York          Maine  57919    3.9
+        ##  5  2015    Middlesex  Massachusetts  85118   13.4
+        ##  6  2015      Norfolk  Massachusetts  88262   14.4
+        ##  7  2015 Hillsborough  New Hampshire  71244    7.0
+        ##  8  2015   Rockingham  New Hampshire  81198    8.8
+        ##  9  2015      Bristol   Rhode Island  72458    9.6
+        ## 10  2015      Newport   Rhode Island  69526    7.8
+        ## 11  2015   Chittenden        Vermont  65350    5.7
+        ## 12  2015   Grand Isle        Vermont  62608    5.6
+
+16. Complete the following command to produce the plot below.
+
+    ``` r
+    incomedata_small %>% 
+      ggplot(...) + 
+       ... +         # more ggplot commands
+      geom_text(aes(label = county), size=2, hjust=1, vjust=0,
+              data = top2counties)
+    ```
+
+    <img src="p_inc200k.png" align="center" style="max-width: 66%">
+    
+17. Produce a similar plot using the median household income in each county. First create a data frame `top2counties_med` with the two counties in each state with the highest median income in 2015:
+
+    ``` r
+    top2counties_med
+    ```
+
+        ## # A tibble: 12 x 5
+        ## # Groups:   state [6]
+        ##     year        county         state median gt200k
+        ##    <int>         <chr>         <chr>  <int>  <dbl>
+        ##  1  2015    Fairfield    Connecticut  84233   18.1
+        ##  2  2015    Middlesex    Connecticut  79893    9.6
+        ##  3  2015   Cumberland          Maine  60051    5.7
+        ##  4  2015         York          Maine  57919    3.9
+        ##  5  2015    Middlesex  Massachusetts  85118   13.4
+        ##  6  2015      Norfolk  Massachusetts  88262   14.4
+        ##  7  2015 Hillsborough  New Hampshire  71244    7.0
+        ##  8  2015   Rockingham  New Hampshire  81198    8.8
+        ##  9  2015      Bristol   Rhode Island  72458    9.6
+        ## 10  2015   Washington   Rhode Island  72807    7.5
+        ## 11  2015   Chittenden        Vermont  65350    5.7
+        ## 12  2015   Grand Isle        Vermont  62608    5.6
+
+    Then reproduce the following plot:
+
+    <img src="p_med.png" align="center" style="max-width: 66%">
+
+### Exercise part 2 (extra review)
+
+Here are some more exercises using the same data from above. You need to complete steps 1 through 8 from part 1 before attempting part 2.
+
+1.  Reproduce the following sequence using `str_pad`:
+
+        ##  [1] "02" "03" "04" "05" "06" "07" "08" "09" "10" "11"
+
+    Combine your previous command with `str_c` to produce the vector `incvars_dist`:
+
+    ``` r
+    incvars_dist <- str_c(..., #complete this line
+                          str_pad(...)) # your command from the previous question
+    ```
+
+    ``` r
+    incvars_dist
+    ```
+
+        ##  [1] "HC01_EST_VC02" "HC01_EST_VC03" "HC01_EST_VC04" "HC01_EST_VC05"
+        ##  [5] "HC01_EST_VC06" "HC01_EST_VC07" "HC01_EST_VC08" "HC01_EST_VC09"
+        ##  [9] "HC01_EST_VC10" "HC01_EST_VC11"
+
+2.  Apply your `separate` command from an earlier question (see above) to the original `incomedata` data frame, so we have separate `state` and `county` columns.
+
+    ``` r
+    incomedata <-
+          separate(incomedata, ...) # complete this line
+    ```
+
+    Now use `filter` and `select` to create a data frame `incomedata_nh` that only contains rows for counties in New Hampshire and has columns for `year`, `county`, and the 10 variables named in the vector `incvars_dist`:
+
+    ``` r
+    incomedata_nh <- incomedata %>% 
+      filter(...) %>% # complete this line 
+      select(...)   # complete this line
+    ```
+
+    ``` r
+    incomedata_nh
+    ```
+
+        ## # A tibble: 50 x 12
+        ##     year        county HC01_EST_VC02 HC01_EST_VC03 HC01_EST_VC04
+        ##    <chr>         <chr>         <dbl>         <dbl>         <dbl>
+        ##  1  2011      Belknap            4.8           4.8           8.9
+        ##  2  2011      Carroll            5.5           5.3           8.8
+        ##  3  2011     Cheshire            4.8           4.7          10.3
+        ##  4  2011         Coos            7.5           7.5          14.3
+        ##  5  2011      Grafton            5.6           4.5           9.9
+        ##  6  2011 Hillsborough            4.1           3.5           7.9
+        ##  7  2011    Merrimack            4.2           3.9           8.3
+        ##  8  2011   Rockingham            3.1           3.0           6.6
+        ##  9  2011    Strafford            5.9           4.6           8.6
+        ## 10  2011     Sullivan            5.8           6.1           9.0
+        ## # ... with 40 more rows, and 7 more variables: HC01_EST_VC05 <dbl>,
+        ## #   HC01_EST_VC06 <dbl>, HC01_EST_VC07 <dbl>, HC01_EST_VC08 <dbl>,
+        ## #   HC01_EST_VC09 <dbl>, HC01_EST_VC10 <dbl>, HC01_EST_VC11 <dbl>
+
+3.  Convert `incomedata_nh` to "long" format using `gather`. One of the arguments to `gather` should be your vector `incvars_dist`.
+
+    ``` r
+    incomedata_nh <-
+      incomedata_nh %>% gather(...) # complete this line
+    ```
+
+    ``` r
+    incomedata_nh
+    ```
+
+        ## # A tibble: 500 x 4
+        ##     year        county       varname proportion
+        ##    <chr>         <chr>         <chr>      <dbl>
+        ##  1  2011      Belknap  HC01_EST_VC02        4.8
+        ##  2  2011      Carroll  HC01_EST_VC02        5.5
+        ##  3  2011     Cheshire  HC01_EST_VC02        4.8
+        ##  4  2011         Coos  HC01_EST_VC02        7.5
+        ##  5  2011      Grafton  HC01_EST_VC02        5.6
+        ##  6  2011 Hillsborough  HC01_EST_VC02        4.1
+        ##  7  2011    Merrimack  HC01_EST_VC02        4.2
+        ##  8  2011   Rockingham  HC01_EST_VC02        3.1
+        ##  9  2011    Strafford  HC01_EST_VC02        5.9
+        ## 10  2011     Sullivan  HC01_EST_VC02        5.8
+        ## # ... with 490 more rows
+
+4.  We are now going to replace these coded variable names with the descriptions in `metadata`. First run this command:
+
+    ``` r
+    filter(metadata, year==2011, varname %in% incvars_dist)
+    ```
+
+        ## # A tibble: 10 x 3
+        ##     year       varname                                    vardesc
+        ##    <chr>         <chr>                                      <chr>
+        ##  1  2011 HC01_EST_VC02    Households; Estimate; Less than $10,000
+        ##  2  2011 HC01_EST_VC03   Households; Estimate; $10,000 to $14,999
+        ##  3  2011 HC01_EST_VC04   Households; Estimate; $15,000 to $24,999
+        ##  4  2011 HC01_EST_VC05   Households; Estimate; $25,000 to $34,999
+        ##  5  2011 HC01_EST_VC06   Households; Estimate; $35,000 to $49,999
+        ##  6  2011 HC01_EST_VC07   Households; Estimate; $50,000 to $74,999
+        ##  7  2011 HC01_EST_VC08   Households; Estimate; $75,000 to $99,999
+        ##  8  2011 HC01_EST_VC09 Households; Estimate; $100,000 to $149,999
+        ##  9  2011 HC01_EST_VC10 Households; Estimate; $150,000 to $199,999
+        ## 10  2011 HC01_EST_VC11     Households; Estimate; $200,000 or more
+
+    Pipe the results of the previous command to extract the `vardesc` column and store it as a vector `income_descriptions`.
+
+    ``` r
+    income_descriptions
+    ```
+
+        ##  [1] "Households; Estimate; Less than $10,000"   
+        ##  [2] "Households; Estimate; $10,000 to $14,999"  
+        ##  [3] "Households; Estimate; $15,000 to $24,999"  
+        ##  [4] "Households; Estimate; $25,000 to $34,999"  
+        ##  [5] "Households; Estimate; $35,000 to $49,999"  
+        ##  [6] "Households; Estimate; $50,000 to $74,999"  
+        ##  [7] "Households; Estimate; $75,000 to $99,999"  
+        ##  [8] "Households; Estimate; $100,000 to $149,999"
+        ##  [9] "Households; Estimate; $150,000 to $199,999"
+        ## [10] "Households; Estimate; $200,000 or more"
+
+5.  Remove the string `Households; Estimate;` from each element of `income_descriptions`, so this vector looks like this:
+
+    ``` r
+    income_descriptions
+    ```
+
+        ##  [1] "Less than $10,000"    "$10,000 to $14,999"   "$15,000 to $24,999"  
+        ##  [4] "$25,000 to $34,999"   "$35,000 to $49,999"   "$50,000 to $74,999"  
+        ##  [7] "$75,000 to $99,999"   "$100,000 to $149,999" "$150,000 to $199,999"
+        ## [10] "$200,000 or more"
+
+6.  Run the following command so that the vector `income_descriptions` is [named](http://r4ds.had.co.nz/vectors.html#naming-vectors).
+
+    ``` r
+    names(income_descriptions) <- incvars_dist
+    ```
+
+    This allows us to select the description using the variable name:
+
+    ``` r
+    income_descriptions['HC01_EST_VC02']
+    ```
+
+        ##       HC01_EST_VC02 
+        ## "Less than $10,000"
+
+    Now run this command to add these variable descriptions to our New Hampshire income data:
+
+    ``` r
+    incomedata_nh <- 
+      incomedata_nh %>% mutate(vardesc = income_descriptions[varname],
+                               vardesc = factor(vardesc, levels=income_descriptions))
+
+    # check the results:
+    sample_n(incomedata_nh, 5) %>% select(varname, vardesc)
+    ```
+
+        ## # A tibble: 5 x 2
+        ##         varname              vardesc
+        ##           <chr>               <fctr>
+        ## 1 HC01_EST_VC10 $150,000 to $199,999
+        ## 2 HC01_EST_VC09 $100,000 to $149,999
+        ## 3 HC01_EST_VC07   $50,000 to $74,999
+        ## 4 HC01_EST_VC11     $200,000 or more
+        ## 5 HC01_EST_VC06   $35,000 to $49,999
+
+    (We are storing `vardesc` as a `factor` so that the ordering of the categories is preserved when we use them to make graphics.)
+
+7.  Sort the New Hampshire county names in descending order according to the proportion of households making more than $200,000 in 2015. Complete this command:
+
+    ``` r
+    counties_ordered <- 
+      incomedata_nh %>% filter(year==2015, ...) %>% # complete this line
+      arrange(...) %>%  # complete this line
+      .$county
+    ```
+
+    Now change the `county` variable to a `factor` using this command:
+
+    ``` r
+    incomedata_nh <-
+      incomedata_nh %>% mutate(county = factor(county, levels = counties_ordered))
+    ```
+
+8.  Finally, complete this `ggplot` command to visualize the income distribution in New Hampshire counties in 2015.
+
+    ``` r
+    filter(incomedata_nh, ... )%>% # complete this line
+      ggplot() + 
+      geom_tile(...) + # complete this line
+      theme(axis.text.x = element_text(angle=45, hjust=1)) + # to make the x-axis labels legble
+      scale_fill_gradient2(low='white', high='darkgreen',
+                           name="", breaks=c(5,10,15,20),
+                           labels=c("5","10","15","20 percent")) +
+      ...  # change the default axis labels and plot title
+    ```
+
+    <img src="heatmap.png" align="center" style="max-width: 66%">
