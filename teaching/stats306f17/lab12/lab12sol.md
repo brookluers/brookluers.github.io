@@ -3,57 +3,11 @@ layout: coursepage
 title: Lab 12
 courseurl: /teaching/stats306f17/
 coursename: Statistics 306, Fall 2017
+parentname: Lab 12
+parenturl: /teaching/stats306f17/lab12
 ---
 
-# Lab 12, December 5
-
-[Solutions](lab12sol)
-
--   [`for` loops](#for-loops)
--   [Exercise Part 1](#exercise-part-1)
--   [Exercise part 2 (extra review)](#exercise-part-2-extra-review)
-
-``` r
-library(tidyverse)
-library(stringr)
-```
-
-### `for` loops
-
-Reference: section [21.2](http://r4ds.had.co.nz/iteration.html#for-loops){:target="_blank"}
-
-A for loop executes a block of code (the "body" of the loop) once for each item in a sequence.
-In this example, the sequence consists of the integers `1`, `2`, ..., `n`. The loop body is executed once for each item in the sequence, and the variable `i` is assigned to the corresponding sequence item in each iteration. Each iteration of this loop computes the `i`th Fibonacci number.
-
-``` r
-prev <- 0
-cur <- 1
-n <- 10
-fibn <- vector('integer', n)
-for (i in seq_along(fibn)){
-  print(str_c("i = ", i))
-  fibn[i] <- prev + cur
-  prev <- cur
-  cur <- fibn[i]
-}
-```
-
-    ## [1] "i = 1"
-    ## [1] "i = 2"
-    ## [1] "i = 3"
-    ## [1] "i = 4"
-    ## [1] "i = 5"
-    ## [1] "i = 6"
-    ## [1] "i = 7"
-    ## [1] "i = 8"
-    ## [1] "i = 9"
-    ## [1] "i = 10"
-
-``` r
-fibn
-```
-
-    ##  [1]  1  2  3  5  8 13 21 34 55 89
+# Lab 12, December 5, Solutions
 
 ### Exercise Part 1
 
@@ -66,7 +20,7 @@ The data, from the American Communtiy Survey, describe the household income dist
 
     ``` r
     fnames <- dir(path="acs-income/",
-                  pattern="") # complete this line
+                  pattern="_metadata")
     ```
 
     If the 10 `csv` files are in your working directory, then you can omit the `path=` argument.
@@ -84,7 +38,7 @@ The data, from the American Communtiy Survey, describe the household income dist
     First extract the two-digit year:
 
     ``` r
-    fyears <- str_extract(fnames, ...) # complete this command
+    fyears <- str_extract(fnames, "\\d\\d")
     ```
 
     ``` r
@@ -96,7 +50,7 @@ The data, from the American Communtiy Survey, describe the household income dist
     Then prepend `20` to convert the two-digit years to four-digit years.
 
     ``` r
-    fyears <- str_c(...) # complete this command
+    fyears <- str_c("20", fyears)
     ```
 
     ``` r
@@ -128,19 +82,33 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## $`2015`
         ## NULL
 
-4.  Write the command to display the second element of the vector `fnames`.
+4.  Write the command to display the second element of the vector `fnames`.  
+    Reference: list subsetting, [section 20.5.2](http://r4ds.had.co.nz/vectors.html#subsetting-1)
+
+    ``` r
+    fnames[[2]]
+    ```
+
+        ## [1] "ACS_12_5YR_S1901_metadata.csv"
+
 
 5.  Complete the body of the following for loop.
     Each iteration of the loop imports the metadata file corresponding to the `i`th element of `fnames` and stores the result as the `i`th element of `metadata`.
-    In each iteration, provide an argument to `read_csv` so the columns of the imported data frame are named `varname` and `vardesc`.
+    In each iteration, provide an argument to `read_csv` so the columns of the imported data frame are named `varname` and `vardesc`.  
+    If the csv files are in your working directory (not a subdirectory called `acs-income`), the first argument of `read_csv` will just be `fnames[i]`.  
 
     ``` r
-    for (i in seq_along(fnames)) { 
-      metadata[[i]] <- read_csv(...) # complete this line
+    for (i in seq_along(fnames)) {
+      metadata[[i]] <- read_csv(str_c("acs-income/", fnames[i]), 
+                                col_names = c('varname','vardesc'))
     }
     ```
 
-    To check your answer, print the element of the list `metadata` named `"2014"`:
+    To check your answer, print the element of the list `metadata` named `"2014"`:  
+    
+    ``` r
+    metadata[['2014']]
+    ```
 
         ## # A tibble: 131 x 2
         ##              varname                                         vardesc
@@ -175,29 +143,26 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 5  2011     HC01_MOE_VC01 Households; Margin of Error; Total
         ## 6  2011     HC02_EST_VC01          Families; Estimate; Total
 
-8.  Import the five data files into a data frame called `incomedata`, using the previous few steps as a guide. Start by creating another vector of file names, `fnames2`. Use the `dir` function and a regular expression to match the data file names, which all end with `S1901.csv`.
-
-    ``` r
+8.  Import the five data files into a data frame called `incomedata`, using the previous few steps as a guide. Start by creating another vector of file names, `fnames2`. Use the `dir` function and a regular expression to match the data file names, which all end with `S1901.csv`.  
+    
+    ```r 
+    fnames2 <- dir("acs-income",
+		    pattern="_S1901.csv")
     fnames2 # the data file names
     ```
 
         ## [1] "ACS_11_5YR_S1901.csv" "ACS_12_5YR_S1901.csv" "ACS_13_5YR_S1901.csv"
         ## [4] "ACS_14_5YR_S1901.csv" "ACS_15_5YR_S1901.csv"
 
-    Now write a for loop to import the five data files. Do not specify column names when importing these files; we will use the variable descriptions in `metadata` to understand what each column represents.
-
-    ``` r
+    Now write a for loop to import the five data files. Do not specify column names when importing these files; we will use the variable descriptions in `metadata` to understand what each column represents.  
+    
+     ``` r
     incomedata <- vector("list", length(fnames2))
-    names(incomedata) <- str_c(..., str_extract(fnames2, ... )) # complete this line, the names correspond to the four-digit years
-    for (...) {               # complete this line
-      incomedata[[i]] <- ...  # complete this line
+    names(incomedata) <- str_c("20", str_extract(fnames2, "\\d\\d"))
+    for (i in seq_along(fnames2)) {
+      incomedata[[i]] <- read_csv(str_c("acs-income/", fnames2[i]))
     }
     incomedata <- bind_rows(incomedata, .id='year')
-    ```
-
-    Check your answer:
-
-    ``` r
     dim(incomedata)
     ```
 
@@ -217,11 +182,36 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 5  2015    67
 
 9.  Print the unique values of `metadata$vardesc` containing the string `Households; Estimate;`. You should see 16 variable descriptions, most of which correspond to income categories (e.g. households earning between 10,000 and 14,999 dollars per year).
-    We will focus on just two of these variables: the proportion of households earning more than $200,000 per year and the median household income.
+    We will focus on just two of these variables: the proportion of households earning more than $200,000 per year and the median household income.  
+
+     ``` r
+    filter(metadata, str_detect(vardesc, "Households; Estimate;")) %>% 
+    	.$vardesc %>% unique
+    ```
+
+        ##  [1] "Households; Estimate; Total"                                                   
+        ##  [2] "Households; Estimate; Less than $10,000"                                       
+        ##  [3] "Households; Estimate; $10,000 to $14,999"                                      
+        ##  [4] "Households; Estimate; $15,000 to $24,999"                                      
+        ##  [5] "Households; Estimate; $25,000 to $34,999"                                      
+        ##  [6] "Households; Estimate; $35,000 to $49,999"                                      
+        ##  [7] "Households; Estimate; $50,000 to $74,999"                                      
+        ##  [8] "Households; Estimate; $75,000 to $99,999"                                      
+        ##  [9] "Households; Estimate; $100,000 to $149,999"                                    
+        ## [10] "Households; Estimate; $150,000 to $199,999"                                    
+        ## [11] "Households; Estimate; $200,000 or more"                                        
+        ## [12] "Households; Estimate; Median income (dollars)"                                 
+        ## [13] "Households; Estimate; Mean income (dollars)"                                   
+        ## [14] "Households; Estimate; PERCENT IMPUTED - Household income in the past 12 months"
+        ## [15] "Households; Estimate; PERCENT IMPUTED - Family income in the past 12 months"   
+        ## [16] "Households; Estimate; PERCENT IMPUTED - Nonfamily income in the past 12 months"
+
+
 10. Complete this command to produce the output that follows.
 
     ``` r
-    filter(metadata, str_detect(vardesc, ...))
+    # completed command:
+    filter(metadata, str_detect(vardesc, "Households; Estimate; \\$200")) 
     ```
 
         ## # A tibble: 5 x 3
@@ -234,11 +224,18 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 5  2015 HC01_EST_VC11 Households; Estimate; $200,000 or more
 
     We see that every year has the same variable name for the proportion of households earning more than $200,000 (this might not always be the case with Census data).
-    Store the variable name (`HC01...`) in an object called `var_maxinc`.
+    Store the variable name (`HC01...`) in an object called `var_maxinc`.  
+
+    ``` r
+    var_maxinc <-
+      filter(metadata, str_detect(vardesc, "Households; Estimate; \\$200")) %>%
+      .$varname %>% unique
+    ```
+
 11. Complete the following command to check the variable name for median household income.
 
     ``` r
-    filter(metadata, str_detect(vardesc, ...))
+    filter(metadata, str_detect(vardesc, "Households; Estimate; Median"))
     ```
 
         ## # A tibble: 5 x 3
@@ -250,9 +247,22 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 4  2014 HC01_EST_VC13 Households; Estimate; Median income (dollars)
         ## 5  2015 HC01_EST_VC13 Households; Estimate; Median income (dollars)
 
-    Again, all five years use the same variable name for median household income. Store this variable name in an object called `var_median`.
+    Again, all five years use the same variable name for median household income. Store this variable name in an object called `var_median`.  
+    ``` r
+    var_median <- 
+      filter(metadata, str_detect(vardesc, "Households; Estimate; Median")) %>%
+      .$varname %>% unique
+    ```
 
-12. From `incomedata`, select the columns `year`, `Geo.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename these columns so your result looks like this:
+12. From `incomedata`, select the columns `year`, `Geo.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename the columns as indicated below.
+    Make sure your `year` variable is either an `integer` or `double`. Store this data frame in an object called `incomedata_small`.  
+
+
+    ``` r
+    (incomedata_small <- select(incomedata, "year", 'county'="GEO.display-label", 
+           'median'=var_median, 'gt200k' = var_maxinc) %>%
+      mutate(year=as.integer(year)) ) 
+    ```
 
         ## # A tibble: 335 x 4
         ##     year                         county median gt200k
@@ -269,14 +279,14 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 10  2011        Aroostook County, Maine  37138    1.1
         ## # ... with 325 more rows
 
-    Make sure your `year` variable is either an `integer` or `double`. Store this data frame in an object called `incomedata_small`.
 
 13. Use `separate` to add a `state` column to `incomedata_small`:
 
     ``` r
-    incomedata_small <-
-      separate(incomedata_small, ...) # complete this line
-    incomedata_small
+    (incomedata_small <-
+      separate(incomedata_small, county,
+                      c('county', 'state'),
+                      sep="County, "))
     ```
 
         ## # A tibble: 335 x 5
@@ -294,11 +304,29 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 10  2011    Aroostook        Maine  37138    1.1
         ## # ... with 325 more rows
 
-14. Write a command to check if there are any county names that are duplicated across states. Start by filtering `incomedata_small` to a single year. Then use one or more `dplyr` functions to find county names that are repeated across multiple states.
-
-15. Create a data frame called `top2counties` that contains, for each state, the two counties with the highest proportion of households earning more than $200,000 in 2015:
+14. Write a command to check if there are any county names that are duplicated across states. Start by filtering `incomedata_small` to a single year. Then use one or more `dplyr` functions to find county names that are repeated across multiple states.  
 
     ``` r
+    incomedata_small %>% filter(year==2011) %>% count(county) %>%
+      filter(n>1)
+    ```
+
+            ## # A tibble: 6 x 2
+            ##        county     n
+            ##         <chr> <int>
+            ## 1    Bristol      2
+            ## 2      Essex      2
+            ## 3   Franklin      3
+            ## 4  Middlesex      2
+            ## 5 Washington      3
+            ## 6    Windham      2
+
+
+15. Create a data frame called `top2counties` that contains, for each state, the two counties with the highest proportion of households earning more than $200,000 in 2015:  
+
+    ``` r
+    top2counties <- 
+      incomedata_small %>%filter(year==2015)%>% group_by(state)%>% top_n(2, gt200k)
     top2counties
     ```
 
@@ -319,21 +347,28 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 11  2015   Chittenden        Vermont  65350    5.7
         ## 12  2015   Grand Isle        Vermont  62608    5.6
 
-16. Complete the following command to produce the plot below.
+16. Complete the following command to produce the plot below.  
 
     ``` r
     incomedata_small %>% 
-      ggplot(...) + 
-       ... +         # more ggplot commands
-      geom_text(aes(label = county), size=2, hjust=1, vjust=0,
-              data = top2counties)
+    ggplot(aes(x=year, y=gt200k))+
+    geom_line(aes(group=interaction(county,state)))+
+    geom_text(aes(label=county),size=2,
+              hjust=1,vjust=0,
+              data=top2counties)+ 
+    facet_wrap(~state)+ 
+    xlab('year') +
+    ylab("Proportion") + 
+    ggtitle("New England counties:\nproportion of households earning more than $200k per year")
     ```
 
-    <img src="p_inc200k.png" align="center" style="max-width: 66%">
+    <img src="../p_inc200k.png" align="center" style="max-width: 66%">
     
-17. Produce a similar plot using the median household income in each county. First create a data frame `top2counties_med` with the two counties in each state with the highest median income in 2015:
+17. Produce a similar plot using the median household income in each county. First create a data frame `top2counties_med` with the two counties in each state with the highest median income in 2015:   
 
     ``` r
+    top2counties_med <- 
+      incomedata_small %>%filter(year==2015)%>% group_by(state)%>% top_n(2, median)
     top2counties_med
     ```
 
@@ -355,25 +390,37 @@ The data, from the American Communtiy Survey, describe the household income dist
         ## 12  2015   Grand Isle        Vermont  62608    5.6
 
     Then reproduce the following plot:
+    ``` r
+    incomedata_small %>% 
+    ggplot(aes(x=year, y=median))+
+    geom_line(aes(group=county))+
+    geom_text(aes(label=county),size=2,
+              hjust=1,vjust=0,
+              data=top2counties_med)+ 
+    facet_wrap(~state)+ 
+    xlab('year') +
+    ylab("Household income (dollars)") + 
+    ggtitle("New England counties:\nmedian household income")
+     ```
 
-    <img src="p_med.png" align="center" style="max-width: 66%">
+    <img src="../p_med.png" align="center" style="max-width: 66%">
 
 ### Exercise part 2 (extra review)
 
 Here are some more exercises using the same data from above. You need to complete steps 1 through 8 from part 1 before attempting part 2.
 
-1.  Reproduce the following sequence using `str_pad`:
+1.  Reproduce the following sequence using `str_pad`:  
+
+    ``` r
+    str_pad(2:11, 2, "left", pad='0')
+    ```
 
         ##  [1] "02" "03" "04" "05" "06" "07" "08" "09" "10" "11"
 
-    Combine your previous command with `str_c` to produce the vector `incvars_dist`:
+    Combine your previous command with `str_c` to produce the vector `incvars_dist`:  
 
-    ``` r
-    incvars_dist <- str_c(..., #complete this line
-                          str_pad(...)) # your command from the previous question
-    ```
-
-    ``` r
+     ``` r
+    incvars_dist <- str_c("HC01_EST_VC", str_pad(2:11, 2, "left", pad="0"))
     incvars_dist
     ```
 
@@ -381,22 +428,21 @@ Here are some more exercises using the same data from above. You need to complet
         ##  [5] "HC01_EST_VC06" "HC01_EST_VC07" "HC01_EST_VC08" "HC01_EST_VC09"
         ##  [9] "HC01_EST_VC10" "HC01_EST_VC11"
 
-2.  Apply your `separate` command from an earlier question (see above) to the original `incomedata` data frame, so we have separate `state` and `county` columns.
+2.  Apply your `separate` command from an earlier question (see above) to the original `incomedata` data frame, so we have separate `state` and `county` columns.  
+    Then use `filter` and `select` to create a data frame `incomedata_nh` that only contains rows for counties in New Hampshire and has columns for `year`, `county`, and the 10 variables named in the vector `incvars_dist`:  
 
     ``` r
-    incomedata <-
-          separate(incomedata, ...) # complete this line
-    ```
+    incomedata <- 
+        incomedata %>% 
+        rename(county='GEO.display-label') %>%
+        separate(county, c('county','state'),
+               sep="County, ")
 
-    Now use `filter` and `select` to create a data frame `incomedata_nh` that only contains rows for counties in New Hampshire and has columns for `year`, `county`, and the 10 variables named in the vector `incvars_dist`:
+    incomedata_nh <- 
+        incomedata %>% 
+        filter(state=="New Hampshire") %>% 
+        select(c('year','county',incvars_dist))
 
-    ``` r
-    incomedata_nh <- incomedata %>% 
-      filter(...) %>% # complete this line 
-      select(...)   # complete this line
-    ```
-
-    ``` r
     incomedata_nh
     ```
 
@@ -417,14 +463,12 @@ Here are some more exercises using the same data from above. You need to complet
         ## #   HC01_EST_VC06 <dbl>, HC01_EST_VC07 <dbl>, HC01_EST_VC08 <dbl>,
         ## #   HC01_EST_VC09 <dbl>, HC01_EST_VC10 <dbl>, HC01_EST_VC11 <dbl>
 
-3.  Convert `incomedata_nh` to "long" format using `gather`. One of the arguments to `gather` should be your vector `incvars_dist`.
+3.  Convert `incomedata_nh` to "long" format using `gather`. One of the arguments to `gather` should be your vector `incvars_dist`.  
 
     ``` r
-    incomedata_nh <-
-      incomedata_nh %>% gather(...) # complete this line
-    ```
-
-    ``` r
+    incomedata_nh <- 
+      incomedata_nh %>%
+      gather(incvars_dist, key='varname', value='proportion')
     incomedata_nh
     ```
 
@@ -463,9 +507,11 @@ Here are some more exercises using the same data from above. You need to complet
         ##  9  2011 HC01_EST_VC10 Households; Estimate; $150,000 to $199,999
         ## 10  2011 HC01_EST_VC11     Households; Estimate; $200,000 or more
 
-    Pipe the results of the previous command to extract the `vardesc` column and store it as a vector `income_descriptions`.
+    Pipe the results of the previous command to extract the `vardesc` column and store it as a vector `income_descriptions`.  
 
     ``` r
+    filter(metadata, year==2011, varname %in% incvars_dist) %>% 
+      .$vardesc -> income_descriptions
     income_descriptions
     ```
 
@@ -483,6 +529,7 @@ Here are some more exercises using the same data from above. You need to complet
 5.  Remove the string `Households; Estimate;` from each element of `income_descriptions`, so this vector looks like this:
 
     ``` r
+    income_descriptions <- str_replace(income_descriptions, "Households; Estimate; ", "")
     income_descriptions
     ```
 
@@ -532,10 +579,10 @@ Here are some more exercises using the same data from above. You need to complet
 
     ``` r
     counties_ordered <- 
-      incomedata_nh %>% filter(year==2015, ...) %>% # complete this line
-      arrange(...) %>%  # complete this line
-      .$county
-    ```
+      incomedata_nh %>% 
+      filter(year==2015, vardesc=="$200,000 or more") %>% 
+      arrange(desc(proportion)) %>% .$county
+    ``` 
 
     Now change the `county` variable to a `factor` using this command:
 
@@ -547,14 +594,15 @@ Here are some more exercises using the same data from above. You need to complet
 8.  Finally, complete this `ggplot` command to visualize the income distribution in New Hampshire counties in 2015.
 
     ``` r
-    filter(incomedata_nh, ... )%>% # complete this line
+    filter(incomedata_nh, year==2015) %>%
       ggplot() + 
-      geom_tile(...) + # complete this line
-      theme(axis.text.x = element_text(angle=45, hjust=1)) + # to make the x-axis labels legble
-      scale_fill_gradient2(low='white', high='darkgreen',
-                           name="", breaks=c(5,10,15,20),
+      geom_tile(aes(x=vardesc,y=county,fill=proportion)) + 
+      theme(axis.text.x=element_text(angle=45,hjust=1)) +
+      scale_fill_gradient2(low='white',high='darkgreen',
+                           name="",
+                           breaks=c(5,10,15,20),
                            labels=c("5","10","15","20 percent")) +
-      ...  # change the default axis labels and plot title
+      xlab("") + ylab("") + ggtitle("NH Counties\nHousehold income, 2015")
     ```
 
-    <img src="heatmap.png" align="center" style="max-width: 66%">
+    <img src="../heatmap.png" align="center" style="max-width: 66%">

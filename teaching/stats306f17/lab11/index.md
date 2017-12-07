@@ -7,6 +7,8 @@ coursename: Statistics 306, Fall 2017
 
 # Lab 11, November 28
 
+[Solutions](lab11sol)
+
 -   [Grouped matches](#grouped-matches)
 -   [Functions](#functions)
     -   [Exercise](#exercise)
@@ -20,8 +22,9 @@ library(stringr)
 
 As you saw in [Lab 10](http://www.brookluers.com/teaching/stats306f17/lab10/#regular-expression-backreferences){:target="_blank"}, grouping a regular expression with parentheses allows us to reference those groups later in the expression, or when replacing parts of a string with `str_replace`. We can also extract each part of a grouped expression using `str_match` or `tidyr::extract`. See [section 14.4](http://r4ds.had.co.nz/strings.html#grouped-matches){:target="_blank"} in the textbook.
 
-[`str_match`](http://stringr.tidyverse.org/reference/str_match.html){:target="_blank"} produces a matrix with one column for the entire matched substring and one column for each group:
+[`str_match`](http://stringr.tidyverse.org/reference/str_match.html){:target="_blank"} produces a matrix with one column for the entire matched substring and one column for each [capture group](https://www.regular-expressions.info/brackets.html){:target="_blank"}. A capture group is defined by wrapping part of your regular expression in parentheses.
 
+The following regular expression contains two capture groups. The second column of the result contains the first capture group, which is defined as one or more letters preceeding a colon.  
 ``` r
 petnames <- c("dog: Fido", "cat: Clarence", "cat: Milo", "guinea pig: Alan", "ferret: Dennis")
 str_match(petnames, "([a-zA-Z ]+): ([A-Za-z]+)")
@@ -34,7 +37,7 @@ str_match(petnames, "([a-zA-Z ]+): ([A-Za-z]+)")
     ## [4,] "guinea pig: Alan" "guinea pig" "Alan"    
     ## [5,] "ferret: Dennis"   "ferret"     "Dennis"
 
-[`extract`](http://tidyr.tidyverse.org/reference/extract.html){:target="_blank"} from the `tidyr` package is useful when we have text data inside a data frame.
+[`extract`](http://tidyr.tidyverse.org/reference/extract.html){:target="_blank"} from the `tidyr` package performs the same operation as `str_match`, but the input data is a column inside a data frame. 
 
 ``` r
 (petdf <- tibble(petnames))
