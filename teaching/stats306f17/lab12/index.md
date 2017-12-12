@@ -252,7 +252,7 @@ The data, from the American Communtiy Survey, describe the household income dist
 
     Again, all five years use the same variable name for median household income. Store this variable name in an object called `var_median`.
 
-12. From `incomedata`, select the columns `year`, `Geo.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename these columns so your result looks like this:
+12. From `incomedata`, select the columns `year`, `GEO.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename these columns so your result looks like this:
 
         ## # A tibble: 335 x 4
         ##     year                         county median gt200k

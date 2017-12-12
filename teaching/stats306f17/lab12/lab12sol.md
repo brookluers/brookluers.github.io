@@ -254,7 +254,7 @@ The data, from the American Communtiy Survey, describe the household income dist
       .$varname %>% unique
     ```
 
-12. From `incomedata`, select the columns `year`, `Geo.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename the columns as indicated below.
+12. From `incomedata`, select the columns `year`, `GEO.display-label`, and the two columns representing the median household income and the proportion of households making more than $200,000. Rename the columns as indicated below.
     Make sure your `year` variable is either an `integer` or `double`. Store this data frame in an object called `incomedata_small`.  
 
 
