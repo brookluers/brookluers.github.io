@@ -1,0 +1,74 @@
+g {
+  font-family: Verdana, Helvetica, Arial, sans-serif;	
+}
+
+.axis path,
+.axis line {
+  stroke: grey;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+      font-family: Verdana, Optima, Futura, sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      fill: rgb(13,13,13);
+}
+
+.viscontainer {
+     width: 100%;
+     max-width: 1000px;
+     display: inline-block;
+     box-sizing: border-box;
+     padding: 5% 0;
+     margin: 0 auto;
+     text-align: center;
+}
+
+svg {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: Verdana, Optima, Futura, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+}
+
+div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.line {
+      fill: none;
+      stroke: rgb(13,13,13);
+      stroke-width: 1.25;
+}
+
+.path{
+	fill: none;
+	stroke: rgb(13,13,13);
+	stroke-width: 1.25;
+}
+
+.line.highlight{
+     stroke: black;
+     stroke-width: 2.5;
+     opacity: 1.0;
+}
+
+text.active {
+	       fill: rgb(13,13,13);
+	       font-weight: 650;
+	       opacity: 1.0;
+}
+
+text.inactive {
+	      fill: rgb(13,13,13);
+	      font-weight: 500;
+	      opacity: 0.75;
+}
+
+.centered {
+     text-align: center;
+}
