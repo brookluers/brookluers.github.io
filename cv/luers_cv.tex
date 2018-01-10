@@ -21,9 +21,9 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-%\lfoot{\small Brook Luers}
-%\cfoot{\small Page~\thepage~of~\pageref{sec:lastpage}}
-%\rfoot{\small updated \today}
+%\lfoot{\footnotesize Brook Luers}
+%\rfoot{\footnotesize Page~\thepage~of~\pageref{sec:lastpage}}
+\cfoot{\footnotesize Brook Luers---Page~\thepage~of~\pageref{sec:lastpage}}
 
 % Adjust margins
 \addtolength{\oddsidemargin}{-.25in}
@@ -39,6 +39,7 @@
 \setlength{\headheight}{36pt}
 \setlength{\headsep}{6pt}
 \setlength{\parskip}{6pt}
+\setlength{\footskip}{18pt}
 
 \setlist{topsep=0pt, itemsep=0pt, parsep=0pt}
 
@@ -102,31 +103,32 @@ GPA: 3.81 out of 4.0
 \section{PROFESSIONAL/RESEARCH EXPERIENCE}
 
 {\bf University of Michigan}, Ann Arbor, MI\\
-{\bf Graduate Research Assistant}
+Graduate Research Assistant
 
-{\addtolength{\leftskip}{15pt}Large-scale observational data\hfill Spring 2017--present\\
-Supervised by Kerby Shedden, Ph.D.\\
-Statistical methods and software for lage-scale observational data. We are applying one-pass dimension reduction algorithms to naturalistic driving data from the Integrated Vehicle-Based Safety System to characterize inter-driver variability in braking behavior.
+{\addtolength{\leftskip}{15pt}\textit{Large-scale observational data}\hfill Spring 2017--present\\
+\textit{Supervised by Kerby Shedden, Ph.D.}\\
+%Statistical methods and software for lage-scale observational data. We are applying one-pass dimension reduction algorithms to naturalistic driving data from the Integrated Vehicle-Based Safety System to characterize inter-driver variability in braking behavior.
+Characterizing inter-driver variability in braking behavior with one-pass dimension reduction techniques applied to naturalistic driving data. Statistical methods and software for streaming data analytics.
 
 }
 
-{\addtolength{\leftskip}{15pt} Sequential decision making in mobile health \hfill June 2016--June 2017\\
-Supervised by Susan Murphy, Ph.D.\\
-Performed data management tasks and statistical analysis for the results of a micro-randomized trial of HeartSteps, an mHealth intervention to increase  physical activity among patients who completed cardiac rehabilitation. Developed a time-varying standardized effect size for the micro-randomized trial design. 
+{\addtolength{\leftskip}{15pt} \textit{Sequential decision making in mobile health} \hfill June 2016--June 2017\\
+\textit{Supervised by Susan Murphy, Ph.D.}\\
+Performed data management and statistical analysis for the results of a micro-randomized trial of HeartSteps, an mHealth intervention to increase  physical activity among cardiac rehabilitation patients. Developed a time-varying standardized effect size for the micro-randomized trial design. 
 
 }
 
 {\bf The University of Wisconsin-Madison}, Madison, WI\\
-{\bf Project Assistant} \hfill Spring 2015
+Project Assistant \hfill Spring 2015
 
 {\addtolength{\leftskip}{15pt}
- Created realistic data sets and example research problems for use in a new Master's-level
+ Created realistic data sets and example research problems for a new Master's-level
   statistical methods and data analysis course.
 
 }
 
 {\bf Epic Systems Corporation}, Verona, WI\\
-{\bf Business Intelligence Developer}\hfill July 2012--June 2013
+Business Intelligence Developer \hfill July 2012--June 2013
 
 {\addtolength{\leftskip}{15pt}
  Developed reporting content and utilities for hospital
@@ -139,7 +141,7 @@ Performed data management tasks and statistical analysis for the results of a mi
 
 \begin{absolutelynopagebreak}
 {\bf American Institues for Research}, Washington, D.C.\\
-{\bf Research Assistant}\hfill Summer 2011
+Research Assistant \hfill Summer 2011
 
 {\addtolength{\leftskip}{15pt}
     Supported staff at the National Center for Education Statistics
@@ -154,38 +156,51 @@ Performed data management tasks and statistical analysis for the results of a mi
 
 \end{absolutelynopagebreak}
 
-\section{PUBLICATIONS AND PRESENTATIONS}
+\section{PUBLICATIONS}
 
-Luers, B., Klasnja, P., and Murphy, S.A. Standardized effect sizes for preventive mobile health interventions in micro-randomized trials. (Revised and resubmitted)
+\textbf{Luers, B.}, Klasnja, P., and Murphy, S.A. Standardized effect sizes for preventive mobile health interventions in micro-randomized trials. (accepted)
 
-HeartSteps: A Case Study in Trial Design and Evaluation of Mobile Health Interventions (poster presentation). Michigan Institute for Data Science Annual Symposium, Ann Arbor, MI. November 2016.
+Klasnja, P., Smith, S., Seewald, N.J., Lee, A., Hall, K., \textbf{Luers, B.}, Hekler, E.B. and Murphy, S.A. Effectiveness of contextually-tailored suggestions for physical activity: A micro-randomized trial of HeartSteps. (submitted)
+
+\section{PRESENTATIONS}
+
+\textbf{Luers, B.} and Shedden, K. Fingerprinting individual driving behavior with vehicle kinematics data and dimension reduction regression. Michigan Institute for Data Science Annual Symposium, Ann Arbor, MI. October 2017. (poster)
+
+NeCamp, T., Yoo, H., \textbf{Luers, B.}, Cho, A., Seewald, N., Klasnja, P., and Murphy, S.A. HeartSteps: A Case Study in Trial Design and Evaluation of Mobile Health Interventions. Michigan Institute for Data Science Annual Symposium, Ann Arbor, MI. November 2016. (poster)
 %Timothy NeCamp, Hyesun Yoo, Brook Luers, April Cho, Nick Seewald, Predrag Klasnja, Susan Murphy
+
 
 \section{TEACHING EXPERIENCE}
 {\bf University of Michigan}, Ann Arbor, MI \\
 Department of Statistics
 
 \hspace{15pt}Teaching Assistant\\
-\hspace{15pt}STATS 306, Introduction to Statistical Computing \hfill Fall 2017
+\hspace{15pt}%STATS 306,
+Introduction to Statistical Computing \hfill Fall 2017
 
 \hspace{15pt}Teaching Assistant\\
-\hspace{15pt}STATS 412, Introduction to Probability and Statistics \hfill Spring 2016
+\hspace{15pt}%STATS 412, 
+Introduction to Probability and Statistics \hfill Spring 2016
 
 \hspace{15pt}Teaching Assistant\\
-\hspace{15pt}STATS 250, Introduction to Statistics and Data Analysis \hfill Fall 2015
+\hspace{15pt}%STATS 250,
+Introduction to Statistics and Data Analysis \hfill Fall 2015
 
 \vspace{6pt}
 {\bf University of Wisconsin-Madison}, Madison, WI\\
 Department of Statistics
 
 \hspace{15pt}Instructor\\
-\hspace{15pt}STAT 301, Introduction to Statistical Methods \hfill Fall 2014
+\hspace{15pt}%STAT 301, 
+Introduction to Statistical Methods \hfill Fall 2014
 
 \hspace{15pt}Teaching Assistant\\
-\hspace{15pt}STAT 301, Introduction to Statistical Methods\hfill Spring 2014
+\hspace{15pt}%STAT 301, 
+Introduction to Statistical Methods\hfill Spring 2014
 
 \hspace{15pt}Teaching Assistant\\
-\hspace{15pt}STAT 224, Introductory Statistics for Engineers \hfill Fall 2013
+\hspace{15pt}%STAT 224, 
+Introductory Statistics for Engineers \hfill Fall 2013
 
 \vspace{6pt}
 {\bf Summer Institute for Training in Biostatistics}, Madison, WI\\
@@ -221,7 +236,7 @@ Statistical modeling and inference
 
 Data analysis and visualization
 
-Progamming languages:  R, Python, Go, C, SQL, Intersystems Cach\'{e}
+Progamming languages:  R, Python, Go, C++, C, SQL, Intersystems Cach\'{e}
 
 Typesetting and productivity:  \LaTeX, Microsoft Office, Windows and Unix-like operating systems
 
