@@ -163,7 +163,7 @@ pres %>% mutate(inaug_age = inaug_year - birth_year) %>%
   theme(panel.background=element_rect(fill=NA))
 ```
 
-<img src="pres-ageplot.png" align="center" style="max-width:75%;">
+<img src="pres-ageplot.png" align="center">
 
 ## Exercise: Cyclist crashes in MI (again)
 

@@ -13,6 +13,8 @@ description:      'I am a Ph.D. student in statistics at the University of Michi
 url:              http://www.brookluers.com
 baseurl: 
 
+# Assets
+pages_list:	{'CV':'/cv','Teaching':'/teaching','Research':'/research','Blog':'/blog'}
 
 author:
   name:           'Brook Luers'

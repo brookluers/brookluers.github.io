@@ -1,5 +1,5 @@
 g {
-  font-family: Verdana, Helvetica, Arial, sans-serif;	
+  font-family: Helvetica, Verdana, Arial, sans-serif;	
 }
 
 .axis path,
@@ -9,7 +9,7 @@ g {
 }
 
 .axis text {
-      font-family: Verdana, Optima, Futura, sans-serif;
+      font-family: Helvetica, Verdana, Optima, Futura, sans-serif;
       font-weight: 500;
       font-size: 11px;
       fill: rgb(13,13,13);
@@ -29,14 +29,9 @@ svg {
     display: block;
     margin-right: auto;
     margin-left: auto;
-    font-family: Verdana, Optima, Futura, sans-serif;
+    font-family: Helvetica, Verdana, Optima, Futura, sans-serif;
     font-weight: 500;
     font-size: 11px;
-}
-
-div {
-    display: inline-block;
-    vertical-align: top;
 }
 
 .line {

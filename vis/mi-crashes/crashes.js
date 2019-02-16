@@ -139,14 +139,14 @@ function onmouseout(d, i) {
 }
 
 var ncounties = 83;
-var textnrows = 6;
-var textrowsize = Math.ceil(ncounties / textnrows);
-var xtband = d3.scaleBand()
-    .domain([0,1])
-    .range([0, w_textselector ]); 
+var textnrows = 25;
+var textncol  = Math.ceil(ncounties / textnrows);
+var xtband = d3.scalePoint()
+    .domain(d3.range(0, textncol))
+    .range([50, w - 75]);
 var ytband = d3.scaleBand()
-    .domain(d3.range(0, 44))
-    .range([40, 1.5 * h]); 
+    .domain(d3.range(0, textnrows))
+    .range([60, h-10]);
     
 var x = d3.scaleLinear()
     .range([svg_padding + 160, w - svg_padding - w_textlabel])
@@ -178,7 +178,7 @@ var line = d3.line()
     .y(function(r) { return y(r.yval); } );
 
 
-d3.csv("ncr-county-year.csv", rowConv, function(error, data) {
+d3.csv("/vis/mi-crashes/ncr-county-year.csv", rowConv, function(error, data) {
 	if (error) {
 	    console.log(error);
 	} else {
@@ -193,7 +193,7 @@ d3.csv("ncr-county-year.csv", rowConv, function(error, data) {
 	}
     });
 
-d3.csv("cr-county-year.csv", rowConv, function(error, data) {
+d3.csv("/vis/mi-crashes/cr-county-year.csv", rowConv, function(error, data) {
 	if (error) {
 	    console.log(error);
 	} else {
@@ -249,7 +249,7 @@ d3.csv("cr-county-year.csv", rowConv, function(error, data) {
 
 
 
-d3.csv("county-pop16.txt", function(d, i, columns) { 
+d3.csv("/vis/mi-crashes/county-pop16.txt", function(d, i, columns) { 
 	d.pop16 = parseInt(d.pop16);
 	return d;
     }, function(error, data) {
@@ -261,7 +261,8 @@ d3.csv("county-pop16.txt", function(d, i, columns) {
 	    d3.select("#text-selectors")
 		.append("svg")
 		.attr("height", 1.5 * h)
-		.attr("width", w_textselector)
+		//.attr("width", w_textselector)
+		.attr("width", w)
 		.selectAll(".county-selector")
 		.data(county_pop16, function(d) { return d.county; })
 		.enter()
@@ -276,10 +277,10 @@ d3.csv("county-pop16.txt", function(d, i, columns) {
 			return i < 25; })
 		.classed("inactive", function(d, i) { return i >= 25; })
 		.attr("x", function(d, i) { 
-			return xtband( +(i>40));
+			return xtband(Math.floor(i / textnrows));
 		  })
 		.attr("y", function(d, i) { 
-			return ytband(i>40 ? i - 41 + 2 : i + 2); 
+			return ytband(i - Math.floor(i/textnrows)*textnrows); 
 	       })
 		.attr("font-size", "10px")
 		.attr("fill", "rgb(13,13,13)")
@@ -296,8 +297,8 @@ d3.csv("county-pop16.txt", function(d, i, columns) {
 		.classed("active", false)
 		.classed("inactive", true)
 		.attr("x", xtband(0))
-		.attr("y", ytband(0))
-		//.attr("font-size", "10px")
+		.attr("y", 30)
+		//.attr("y", ytband(0))
 		.attr("fill", "rgb(13,13,13)")
 		.attr("opacity", "0.75")
 		.text("None")
@@ -325,7 +326,7 @@ d3.csv("county-pop16.txt", function(d, i, columns) {
 		.append("text")
 		.attr("id","selectprompt")
 		.attr("x", xtband(0))
-		.attr("y", 18)
+		.attr("y", 10)
 		.attr("font-size", "14px")
 		.style("font-style", "italic")
 		.text("select counties");

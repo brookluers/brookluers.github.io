@@ -67,7 +67,9 @@ ggplot(filter(enr, reth!="Other/unknown")) +
 
 My attempt is below. There are clearly some problems with the way I am calculating these percentages (e.g. University of Maine). Perhaps a future lab exercise will consist of properly downloading and computing these enrollment percentages.
 
+<a href="enrplot_all-1.png" target="_blank">
 <img src="enrplot_all-1.png" align="center">
+</a>
 
 ## Solutions
 [Solutions to exercise 1](lab3sol)
