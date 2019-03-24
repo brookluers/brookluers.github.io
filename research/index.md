@@ -11,6 +11,8 @@ Luers, B., Klasnja, P., and Murphy, S.A. (2018). Standardized effect sizes for p
 
 ## Presentations and Posters
 
+Luers, B., Qian, M., Nahum-Shani, I., Kasari, C., and Almirall, D. Mixed effect models to compare dynamic treatment regimens with SMART data. ENAR Spring Meeting, Philadelphia, PA. March 2019. (<a href="{{ BASE_PATH }}/research/enar19.pdf">pdf</a>)
+
 Luers, B. Dimension reduction and binary discrimination for naturalistic driving studies with heterogeneity. Michigan Student Symposium for Interdisciplinary Statistical Sciences, Ann Arbor, MI. April 2018. (<a href="{{ BASE_PATH }}/research/mssiss18_poster.pdf">pdf</a>)
 
 Luers, B. and Shedden, K. Fingerprinting individual driving behavior with vehicle kinematics data and dimension reduction regression. Michigan Institute for Data Science Annual Symposium, Ann Arbor, MI. October 2017. (<a href="{{ BASE_PATH }}/research/ivbss_midas_poster.pdf">pdf</a>)
