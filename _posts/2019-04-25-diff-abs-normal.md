@@ -64,7 +64,7 @@ Applying this rotation matrix, we get the region $$WA$$:
 
 The probability of $$WA$$ is easy to compute since we can split the region into disjoint rectangles. Denote $$W\left[\begin{array}{c}X\\Y\end{array}\right] = (\tilde{X}, \tilde{Y})^\intercal$$.
 
-Using independence of $$\tilde{X}$$ and $\tilde{Y}$ and the above picture, we have
+Using independence of $$\tilde{X}$$ and $$\tilde{Y}$$ and the above picture, we have
 
 $$
 \begin{align*}
