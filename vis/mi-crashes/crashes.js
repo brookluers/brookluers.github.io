@@ -150,7 +150,7 @@ var ytband = d3.scaleBand()
     
 var x = d3.scaleLinear()
     .range([svg_padding + 160, w - svg_padding - w_textlabel])
-    .domain([2004, 2016])
+    .domain([2004, 2018])
     .nice();
 
 var xAxis = d3.axisBottom();
@@ -207,7 +207,7 @@ d3.csv("/vis/mi-crashes/cr-county-year.csv", rowConv, function(error, data) {
 		    };
 		});
 	    
-	    yAxis.tickSize(x(2016));
+	    yAxis.tickSize(x(2018));
 
 	    
 	    y.domain([
@@ -217,7 +217,7 @@ d3.csv("/vis/mi-crashes/cr-county-year.csv", rowConv, function(error, data) {
 
 
 	    xAxis.scale(x)
-		.tickValues([2004, 2008, 2012, 2016])
+		.tickValues([2006, 2010, 2014, 2018])
 		.tickFormat(d3.format("d"));
 
 	    yAxis.scale(y)
