@@ -5,6 +5,8 @@ title: Research
 
 ## Publications
 
+Luers, B., Qian, M., Nahum-Shani, I., Kasari, C. Almirall, D. (2019) Linear mixed models for comparing dynamic treatment regimens on a longitudinal outcome in sequentially randomized trials. *Submitted*. ([Preprint](https://arxiv.org/abs/1910.10078){:target="\_blank"})
+
 Klasnja, P., Smith, S., Seewald N.J., Lee, A., Hall, K., Luers, B., Hekler, E.B., and Murphy, S.A. (2018). Efficacy of Contextually Tailored Suggestions for Physical Activity: A Micro-randomized Optimization Trial of HeartSteps. *Annals of Behavioral Medicine*. ([DOI](https://doi.org/10.1093/abm/kay067){:target="\_blank"})
 
 Luers, B., Klasnja, P., and Murphy, S.A. (2018). Standardized effect sizes for preventive mobile health interventions in micro-randomized trials. *Prevention Science*. ([DOI](https://doi.org/10.1007/s11121-017-0862-5){:target="\_blank"})
