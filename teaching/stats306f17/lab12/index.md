@@ -329,7 +329,7 @@ The data, from the American Communtiy Survey, describe the household income dist
               data = top2counties)
     ```
 
-    <img src="p_inc200k.png" align="center" style="max-width: 66%">
+    <img src="p_inc200k.png" align="center" style="max-width: 100%">
     
 17. Produce a similar plot using the median household income in each county. First create a data frame `top2counties_med` with the two counties in each state with the highest median income in 2015:
 
@@ -356,7 +356,7 @@ The data, from the American Communtiy Survey, describe the household income dist
 
     Then reproduce the following plot:
 
-    <img src="p_med.png" align="center" style="max-width: 66%">
+    <img src="p_med.png" align="center" style="max-width: 100%">
 
 ### Exercise part 2 (extra review)
 
@@ -557,4 +557,4 @@ Here are some more exercises using the same data from above. You need to complet
       ...  # change the default axis labels and plot title
     ```
 
-    <img src="heatmap.png" align="center" style="max-width: 66%">
+    <img src="heatmap.png" align="center" style="max-width: 100%">
